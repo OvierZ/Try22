@@ -7,5 +7,8 @@ import retrofit2.http.GET;
 public interface apiService {
     @GET("cotizaciones/usd")
     Call<ResponseBody> getData();
+
+    @GET("estado")
+    Call<ResponseBody> getEstadoApi();
 }
 

@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         fetchData();
+        fetchDolares();
     }
 
     @Override
@@ -101,7 +102,59 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     // Si la respuesta no es exitosa, muestra el error en el TextView
-                    Log.e("API_ERROR", "Error en la respuesta: Código " + response.code() + ", Mensaje: " + response.message());
+                    Log.e("API_ERROR", "Error en la respuesta: Código " + response.code() + ", Mensaje: " + response.toString());
+                    //textViewResponse.setText("Error en la respuesta: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                // Si la solicitud falla, muestra el error en el TextView
+//                Log.e("API_ERROR", "Error en la solicitud: " + t.getMessage());
+//                textViewResponse.setText("Error en la solicitud: " + t.getMessage());
+//            }
+        });
+    }
+
+    private void fetchDolares() {
+        apiService apiService = RetrofitInstance.getApiService();  // Obtén la instancia del servicio API
+
+        // Realiza la solicitud sin parámetros
+        Call<ResponseBody> call = apiService.getEstadoApi();  // Usamos ResponseBody para obtener la respuesta cruda
+
+        // Ejecuta la solicitud de forma asíncrona
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                // Verifica que la respuesta sea exitosa (código 200)
+                if (response.isSuccessful()) {
+                    try {
+                        // Obtener la respuesta como un String
+                        String responseString = response.body().string();
+
+                        // Imprimir la respuesta completa en Logcat (opcional)
+                        Log.d("API_RESPONSE", "Respuesta completa: " + responseString);
+
+                        // Asignar la respuesta al TextView
+                        // textViewResponse.setText(responseString);
+
+                    } catch (IOException e) {
+                        Log.e("API_ERROR", "Error al leer el cuerpo de la respuesta: " + e.getMessage());
+                    }
+                } else {
+                    // Si la respuesta no es exitosa, muestra el error en el TextView
+                    Log.e("API_ERROR_dolares", "Error en la respuesta: Código " + response.code() + ", Mensaje: " + response.toString());
+                    Log.e("API_ERROR_2", "Error en la respuesta" + response);
                     //textViewResponse.setText("Error en la respuesta: " + response.message());
                 }
             }
