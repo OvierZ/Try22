@@ -20,5 +20,13 @@
             android:id="@+id/nav_prueba1"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_prueba1" />
+        <item
+            android:id="@+id/nav_blank"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Emma" />
+        <item
+            android:id="@+id/nav_jdd"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="JDD" />
     </group>
 </menu>
