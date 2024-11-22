@@ -11,4 +11,25 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_prueba1">prueba1</string>
+    <string name="nombre_del_producto">Nombre Del Producto</string>
+    <string name="descripci_n_detallada_del_producto_aqu_puedes_incluir_informaci_n_sobre_las_caracter_sticas_materiales_tama_o_y_cualquier_otro_detalle_importante">Descripción detallada del producto. Aquí puedes incluir información sobre las características, materiales, tamaño, y cualquier otro detalle importante</string>
+    <string name="precio">Precio:</string>
+    <string name="_99_99">$99.99</string>
+    <string name="comprar">Comprar</string>
+    <string name="agregar_al_carrito">Agregar Al Carrito</string>
+    <string name="favorito">Favorito</string>
+    <string name="informacion_adicional">Informacion Adicional</string>
+    <string name="agrega_algun_comentario">Agrega Algun Comentario...</string>
+    <string name="enviar_comentario">Enviar Comentario</string>
+    <string name="modelo_del_producto">Modelo Del Producto</string>
+    <string name="dimensiones">Dimensiones</string>
+    <string name="_10cm_x_20cm_x_5cm">10cm x 20cm x 5cm</string>
+    <string name="color">Color</string>
+    <string name="color_del_producto">Color Del Producto</string>
+    <string name="material">Material</string>
+    <string name="material_del_producto">Material Del Producto</string>
+    <string name="comentarios">Comentarios</string>
+    <string name="marca">Marca</string>
+    <string name="nombre_de_la_marca">Nombre De La Marca</string>
+    <string name="modelo">Modelo</string>
 </resources>
