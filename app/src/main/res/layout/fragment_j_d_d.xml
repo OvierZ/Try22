@@ -271,7 +271,6 @@
             android:text="@string/enviar_comentario"
             android:textAlignment="center"
             android:textSize="23sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginButtom="100dp"/>
+            android:layout_gravity="center_horizontal" />
     </FrameLayout>
 </ScrollView>
