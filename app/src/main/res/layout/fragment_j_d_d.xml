@@ -81,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="670dp"
-            android:background="#000000"
             android:text="@string/comprar"
+            android:background="#0000FF"
             tools:ignore="VisualLintOverlap" />
 
         <Button
