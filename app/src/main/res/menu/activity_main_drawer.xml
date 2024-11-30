@@ -28,5 +28,21 @@
             android:id="@+id/nav_jdd"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="JDD" />
+        <item
+            android:id="@+id/nav_bri"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Bri" />
+        <item
+            android:id="@+id/nav_mario"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Mario" />
+        <item
+            android:id="@+id/nav_demeza"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Demeza" />
+        <item
+            android:id="@+id/nav_ovier"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Ovier" />
     </group>
 </menu>

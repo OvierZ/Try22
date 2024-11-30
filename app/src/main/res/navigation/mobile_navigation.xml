@@ -30,11 +30,33 @@
     <fragment
         android:id="@+id/nav_blank"
         android:name="com.fic.bunnyshopmobiletry5.ui.emma.BlankFragment"
-        android:label="blank"
+        android:label="Emma"
         tools:layout="@layout/fragment_blank" />
     <fragment
         android:id="@+id/nav_jdd"
         android:name="com.fic.bunnyshopmobiletry5.ui.JDD.JDDFragment"
         android:label="JDD"
         tools:layout="@layout/fragment_j_d_d"/>
+    <fragment
+        android:id="@+id/nav_bri"
+        android:name="com.fic.bunnyshopmobiletry5.ui.briseyda.BriseydaFragment"
+        android:label="Bri"
+        tools:layout="@layout/fragment_briseyda"/>
+    <fragment
+        android:id="@+id/nav_mario"
+        android:name="com.fic.bunnyshopmobiletry5.ui.mario.MarioFragment"
+        android:label="Mario"
+        tools:layout="@layout/fragment_mario"/>
+    <fragment
+        android:id="@+id/nav_demeza"
+        android:name="com.fic.bunnyshopmobiletry5.ui.demeza.DemezaFragment"
+        android:label="Demeza"
+        tools:layout="@layout/fragment_demeza"/>
+    <fragment
+        android:id="@+id/nav_ovier"
+        android:name="com.fic.bunnyshopmobiletry5.ui.ovier.OvierFragment"
+        android:label="Ovier"
+        tools:layout="@layout/fragment_ovier"/>
+
+
 </navigation>
