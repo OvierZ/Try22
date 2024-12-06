@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.demeza.DemezaFragment">
 
     <ImageButton
         android:id="@+id/imageButton6"
@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.598"
-        app:srcCompat="@mipmap/img_4"/>
+        app:srcCompat="@drawable/macaco_preocupado"/>
 
     <ImageButton
         android:id="@+id/imageButton7"
@@ -23,7 +23,7 @@
         android:layout_height="134dp"
         android:layout_marginStart="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/img_5"
+        app:srcCompat="@drawable/macaco_preocupado"
         tools:layout_editor_absoluteY="540dp"/>
 
     <ImageButton
@@ -32,14 +32,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/img_6"
+        app:srcCompat="@drawable/macaco_preocupado"
         tools:layout_editor_absoluteY="196dp" />
 
     <ImageButton
         android:id="@+id/imageButton10"
         android:layout_width="93dp"
         android:layout_height="92dp"
-        app:srcCompat="@mipmap/img_7"
+        app:srcCompat="@drawable/macaco_preocupado"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="63dp" />
 
