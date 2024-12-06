@@ -7,12 +7,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fic.bunnyshopmobiletry5.R;
 import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
@@ -30,82 +33,81 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
+import com.fic.bunnyshopmobiletry5.catalogoAdapter.CatalogoAdapter;
 
 public class CatalogoJDDFragment extends Fragment {
 
-    private CatalogoJDDViewModel mViewModel;
-
-    public static CatalogoJDDFragment newInstance() {
-        return new CatalogoJDDFragment();
-    }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_catalogo_j_d_d, container, false);
-    }
+    private View rootView;
+    private RecyclerView recyclerView;
+    private CatalogoAdapter adapter;
+    private List<Map<String, Object>> productos = new ArrayList<>(); // Lista de productos
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CatalogoJDDViewModel.class);
-        // TODO: Use the ViewModel
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_catalogo_j_d_d, container, false);
+
+        // Inicializa el RecyclerView
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // Configura el layout manager
+
+        // Inicializa el adaptador con la lista vacía y enlázalo al RecyclerView
+        adapter = new CatalogoAdapter(productos);
+        recyclerView.setAdapter(adapter);
+
+        // Llama al método para obtener los datos del catálogo
+        obtenerCatalogo();
+
+        return rootView;
     }
 
-    private void obtenerCatalogo(){
-        // Obtén la instancia del servicio API
+    private void obtenerCatalogo() {
         apiService apiService = RetrofitInstance.getApiService();
-
-        //Realiza la solicitud sin parametros
         Call<ResponseBody> call = apiService.getCatalogo();
 
-        //Ejecuta la solicitud de forma asincrona
-        call.enqueue(new Callback<ResponseBody>(){
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response){
-                // Verifica que la respuesta sea exitosa (código 200)
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
-                        // Obtener la respuesta como un String
                         String responseString = response.body().string();
-                        // Imprimir la respuesta cruda (opcional)
-                        Log.d("API_RESPONSE_CATALOGO", "Respuesta del catálogo: " + responseString);
-
-                        // Procesar la respuesta (ejemplo: convertirla en un JSON)
                         JSONArray jsonArray = new JSONArray(responseString);
-
-                        // Recorrer el array y extraer datos
+                        Log.d("Respuesta", jsonArray.toString());
+                        // Procesar los datos
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                            // Extraer los datos del catálogo
-                            int id = jsonObject.getInt("id_articulo");
-                            String nombre = jsonObject.getString("nombre");
-                            String imagen = jsonObject.getString("imagen");
-                            int cantidad = jsonObject.getInt("cantidad");
-                            String descripcion = jsonObject.getString("descripcion");
+                            Map<String, Object> producto = Map.of(
+                                    "nombre", jsonObject.getString("nombre"),
+                                    "descripcion", jsonObject.getString("descripcion"),
+                                    "precio", jsonObject.getDouble("precio"),
+                                    "imagen", jsonObject.getString("imagen")
+                            );
 
-                            Log.d("CATALOGO_ITEM", "ID: " + id + ", Nombre: " + nombre + ", Imagen: " + imagen + ", Cantidad: " + cantidad + ", Descripcion: " + descripcion);
-
+                            productos.add(producto); // Agrega a la lista de productos
                         }
-                    }catch (Exception e){
+
+                        // Notifica al adaptador que los datos han cambiado
+                        adapter.notifyDataSetChanged();
+
+                    } catch (Exception e) {
                         Log.e("API_ERROR_CATALOGO", "Error procesando la respuesta", e);
                     }
-                }else{
+                } else {
                     Log.e("API_ERROR_CATALOGO", "Error en la respuesta: " + response.message());
                 }
             }
+
+            @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e("API_ERROR_CATALOGO", "Error en la solicitud", t);
             }
         });
     }
-
-
-
-
-
 }
