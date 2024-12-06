@@ -1,13 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.demeza.DemezaFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="127dp"
+        android:layout_height="133dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.598"
+        app:srcCompat="@mipmap/img_4"/>
 
-</FrameLayout>
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="130dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/img_5"
+        tools:layout_editor_absoluteY="540dp"/>
+
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/img_6"
+        tools:layout_editor_absoluteY="196dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton10"
+        android:layout_width="93dp"
+        android:layout_height="92dp"
+        app:srcCompat="@mipmap/img_7"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qualify Buy again"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="215dp" />
+
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item price $20,000 Finish"
+        tools:layout_editor_absoluteX="170dp"
+        tools:layout_editor_absoluteY="263dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qualify Buy again"
+        tools:layout_editor_absoluteX="191dp"
+        tools:layout_editor_absoluteY="371dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item price $30,000 Finish"
+        tools:layout_editor_absoluteX="170dp"
+        tools:layout_editor_absoluteY="427dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qualify Buy again"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="563dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="72dp"
+        android:text="Item price $30,000 Finish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="170dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Historial de compras"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="77dp" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
