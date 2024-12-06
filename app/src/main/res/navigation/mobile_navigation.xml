@@ -57,6 +57,9 @@
         android:name="com.fic.bunnyshopmobiletry5.ui.ovier.OvierFragment"
         android:label="Ovier"
         tools:layout="@layout/fragment_ovier"/>
-
-
+    <fragment
+        android:id="@+id/nav_CatalogoJDD"
+        android:name="com.fic.bunnyshopmobiletry5.ui.ovier.OvierFragment"
+        android:label="Juan De Dios"
+        tools:layout="@layout/fragment_catalogo_j_d_d"/>
 </navigation>
