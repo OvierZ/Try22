@@ -44,5 +44,9 @@
             android:id="@+id/nav_ovier"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Ovier" />
+        <item
+            android:id="@+id/nav_CatalogoJDD"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="CatalogoJDD" />
     </group>
 </menu>

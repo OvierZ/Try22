@@ -24,4 +24,5 @@ public class RetrofitInstance {
         }
         return retrofit.create(apiService.class);
     }
+
 }

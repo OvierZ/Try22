@@ -18,5 +18,7 @@ public interface apiService {
     @POST("login")
     Call<ResponseBody> login(@Field("email") String email, @Field("password") String password);
 
+    @GET("articulo/get")
+    Call<ResponseBody> getCatalogo();
 }
 
