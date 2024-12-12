@@ -1,11 +1,16 @@
 package com.fic.bunnyshopmobiletry5.api;
 
+import java.util.Map;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface apiService {
     @GET("cotizaciones/usd")
@@ -20,5 +25,8 @@ public interface apiService {
 
     @GET("articulo/get")
     Call<ResponseBody> getCatalogo();
-}
 
+
+    @GET("articulo/get")
+    Call<ResponseBody> getArticulo(@Query("id_articulos") String id_articulo);
+}
