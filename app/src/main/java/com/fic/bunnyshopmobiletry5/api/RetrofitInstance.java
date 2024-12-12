@@ -8,8 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://192.168.1.9:8000/api/";
+    //private static final String BASE_URL = "http://192.168.22.116:8000/api/";
+//    private static final String BASE_URL = "https://9a74-2806-269-481-222-d8d9-3dfc-6276-bfdc.ngrok-free.app/api/";
     //private static final String BASE_URL = "https://bmxnmgv0-8000.usw3.devtunnels.ms/api/";
+
+    private static final String BASE_URL = enviroment.BASE_URL_API;
     public static apiService getApiService() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()

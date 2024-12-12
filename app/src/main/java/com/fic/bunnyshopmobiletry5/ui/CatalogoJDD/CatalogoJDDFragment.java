@@ -58,7 +58,7 @@ public class CatalogoJDDFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // Configura el layout manager
 
         // Inicializa el adaptador con la lista vacía y enlázalo al RecyclerView
-        adapter = new CatalogoAdapter(productos);
+        adapter = new CatalogoAdapter(getContext(), productos);
         recyclerView.setAdapter(adapter);
 
         // Llama al método para obtener los datos del catálogo
@@ -84,10 +84,11 @@ public class CatalogoJDDFragment extends Fragment {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                             Map<String, Object> producto = Map.of(
+                                    "id_articulo", jsonObject.getString("id_articulos"),
                                     "nombre", jsonObject.getString("nombre"),
                                     "descripcion", jsonObject.getString("descripcion"),
                                     "precio", jsonObject.getDouble("precio"),
-                                    "imagen", jsonObject.getString("imagen")
+                                    "imagen", jsonObject.getString("imagen_android")
                             );
 
                             productos.add(producto); // Agrega a la lista de productos
