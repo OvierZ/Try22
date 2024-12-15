@@ -4,105 +4,145 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     tools:context=".ui.demeza.DemezaFragment">
 
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="127dp"
-        android:layout_height="133dp"
-        android:layout_marginStart="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <View
+        android:id="@+id/cuadroBlanco3"
+        android:layout_width="469dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="372dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598"
-        app:srcCompat="@drawable/macaco_preocupado"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton7"
-        android:layout_width="130dp"
-        android:layout_height="134dp"
-        android:layout_marginStart="28dp"
+    <View
+        android:id="@+id/cuadroBlanco4"
+        android:layout_width="465dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="168dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/macaco_preocupado"
-        tools:layout_editor_absoluteY="540dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+    <View
+        android:id="@+id/cuadroBlanco2"
+        android:layout_width="465dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="572dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/macaco_preocupado"
-        tools:layout_editor_absoluteY="196dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton10"
-        android:layout_width="93dp"
-        android:layout_height="92dp"
-        app:srcCompat="@drawable/macaco_preocupado"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="63dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Qualify Buy again"
-        tools:layout_editor_absoluteX="203dp"
-        tools:layout_editor_absoluteY="215dp" />
-
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Item price $20,000 Finish"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="263dp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Qualify Buy again"
-        tools:layout_editor_absoluteX="191dp"
-        tools:layout_editor_absoluteY="371dp" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Item price $30,000 Finish"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="427dp" />
+    <View
+        android:id="@+id/cuadroBlanco"
+        android:layout_width="465dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="168dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Qualify Buy again"
-        tools:layout_editor_absoluteX="203dp"
-        tools:layout_editor_absoluteY="563dp" />
+        android:text="HISTORIAL DE COMPRAS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="49dp" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
-        android:text="Item price $30,000 Finish"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="170dp" />
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="141dp"
+        android:layout_height="167dp"
+        android:src="@drawable/producto1"
+        app:layout_constraintEnd_toStartOf="@+id/checkedTextView"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="@+id/cuadroBlanco4"
+        tools:layout_editor_absoluteY="173dp" />
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Historial de compras"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="77dp" />
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="141dp"
+        android:layout_height="167dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/produc2"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="375dp" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="141dp"
+        android:layout_height="167dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/producto3"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="577dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="117dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/img"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="19dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView"
+        android:layout_width="180dp"
+        android:layout_height="28dp"
+        android:text="Compra de nuevo"
+        tools:layout_editor_absoluteX="226dp"
+        tools:layout_editor_absoluteY="206dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView2"
+        android:layout_width="154dp"
+        android:layout_height="32dp"
+        android:text="Precio $ 20,000"
+        tools:layout_editor_absoluteX="234dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView3"
+        android:layout_width="182dp"
+        android:layout_height="38dp"
+        android:text="Comprar de nuevo"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView4"
+        android:layout_width="128dp"
+        android:layout_height="38dp"
+        android:text="Precio $ 30,000"
+        tools:layout_editor_absoluteX="240dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView5"
+        android:layout_width="146dp"
+        android:layout_height="29dp"
+        android:text="Comprar de nuevo"
+        tools:layout_editor_absoluteX="233dp"
+        tools:layout_editor_absoluteY="616dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView6"
+        android:layout_width="155dp"
+        android:layout_height="32dp"
+        android:text="Precio $25,000"
+        tools:layout_editor_absoluteX="233dp"
+        tools:layout_editor_absoluteY="661dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
