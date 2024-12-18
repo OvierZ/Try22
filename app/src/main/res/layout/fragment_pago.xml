@@ -5,9 +5,171 @@
     android:layout_height="match_parent"
     tools:context=".ui.pago.PagoFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <ScrollView
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:background="#F8EDE3">
 
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pago"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:textColor="#000000" />
+
+        <!-- Contenedor principal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#C4B7A6"
+            android:padding="16dp"
+            android:layout_marginHorizontal="8dp"
+            android:elevation="4dp">
+
+            <!-- Número de tarjeta -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de Tarjeta"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#F9F5E7"
+                android:layout_marginBottom="16dp"
+                android:padding="8dp"
+                android:hint="Número de Tarjeta"
+                android:textColorHint="#A9A9A9" />
+
+            <!-- Fecha de expiración y CVV -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- Fecha de expiración -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha de Expiración"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#000000" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="#F9F5E7"
+                        android:padding="8dp"
+                        android:hint="MM/AA"
+                        android:textColorHint="#A9A9A9"
+                        android:inputType="datetime" />
+                </LinearLayout>
+
+                <!-- Espacio -->
+                <View
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content" />
+
+                <!-- CVV -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CVV"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#000000" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="#F9F5E7"
+                        android:padding="8dp"
+                        android:hint="123"
+                        android:textColorHint="#A9A9A9"
+                        android:inputType="numberPassword" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Nombre del titular -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Nombre del Titular"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#F9F5E7"
+                android:layout_marginBottom="16dp"
+                android:padding="8dp"
+                android:hint="Nombre del Titular"
+                android:textColorHint="#A9A9A9" />
+
+            <!-- Aceptar términos y condiciones -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Acepto los términos y condiciones"
+                    android:textSize="14sp"
+                    android:paddingStart="8dp"
+                    android:textColor="#555555" />
+            </LinearLayout>
+
+            <!-- Botón de envío -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enviar Pago"
+                android:background="#333333"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:elevation="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    </ScrollView>
 </FrameLayout>
