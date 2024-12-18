@@ -2,6 +2,7 @@ package com.fic.bunnyshopmobiletry5.ui.emma;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.fic.bunnyshopmobiletry5.R;
 import com.fic.bunnyshopmobiletry5.api.apiService;
 import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
+import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
@@ -46,7 +48,7 @@ public class BlankFragment extends Fragment {
         // Infla el layout del fragmento y guarda la vista raíz
         rootView = inflater.inflate(R.layout.fragment_blank, container, false);
 
-        Toast.makeText(rootView.getContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(rootView.getContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
 
         Button btnLogin = rootView.findViewById(R.id.button_login);
 
@@ -94,6 +96,12 @@ public class BlankFragment extends Fragment {
                         Log.d("API_RESPONSE_lOGIN", "Respuesta Login: " + responseString);
 
                         Toast.makeText(rootView.getContext(),"Acceso concedido",Toast.LENGTH_SHORT).show();
+
+                        // Guardar el JSON
+//                        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        Gson gson = new Gson();
+
 
                         // Asignar la respuesta al TextView
                         // textViewResponse.setText(responseString);
