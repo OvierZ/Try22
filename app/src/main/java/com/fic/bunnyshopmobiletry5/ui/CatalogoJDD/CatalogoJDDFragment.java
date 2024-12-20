@@ -88,7 +88,7 @@ public class CatalogoJDDFragment extends Fragment {
                                     "nombre", jsonObject.getString("nombre"),
                                     "descripcion", jsonObject.getString("descripcion"),
                                     "precio", jsonObject.getDouble("precio"),
-                                    "imagen", jsonObject.getString("imagen_android")
+                                    "imagen", jsonObject.getString("imagen")
                             );
 
                             productos.add(producto); // Agrega a la lista de productos

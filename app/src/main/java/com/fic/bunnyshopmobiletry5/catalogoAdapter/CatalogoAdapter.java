@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.fic.bunnyshopmobiletry5.R;
+import com.fic.bunnyshopmobiletry5.api.enviroment;
 
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class CatalogoAdapter extends RecyclerView.Adapter<CatalogoAdapter.Catalo
         holder.tvPrecio.setText(String.format("$%.2f", producto.get("precio")));
 
         // Usar Glide para cargar la imagen desde la URL
-        String urlImagen = (String) producto.get("imagen");
+        String urlImagen = enviroment.BASE_URL_STORAGE + "productos/" + (String) producto.get("imagen");
         Glide.with(context)
                 .load(urlImagen)
                 .placeholder(R.drawable.macaco_preocupado) // Imagen de carga
