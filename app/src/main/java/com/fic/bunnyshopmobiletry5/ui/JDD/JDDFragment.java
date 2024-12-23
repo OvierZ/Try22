@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,7 +61,24 @@ public class JDDFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_j_d_d, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_j_d_d, container, false);
+        Button generateIdButton = rootView.findViewById(R.id.generate_id_button);
+        TextView tvNombre = rootView.findViewById(R.id.textView2);
+
+
+        // Si no se recibió ID, muestra el botón
+        if (getArguments() == null || getArguments().getString("id_producto") == null) {
+            ((View) generateIdButton).setVisibility(View.VISIBLE);
+            ((View) generateIdButton).setOnClickListener(v -> {
+                // Generar ID aleatorio entre 1 y 24
+                int randomId = (int) (Math.random() * 24) + 1;
+                Log.d("RANDOM_ID", "ID generado: " + randomId);
+
+                // Llamar al método para obtener el artículo
+                getArticulo(String.valueOf(randomId));
+            });
+        }
+        return rootView;
     }
 
     @Override
