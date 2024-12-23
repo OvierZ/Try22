@@ -7,142 +7,219 @@
     android:background="@android:color/darker_gray"
     tools:context=".ui.demeza.DemezaFragment">
 
-    <View
-        android:id="@+id/cuadroBlanco3"
-        android:layout_width="469dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="372dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/cuadroBlanco4"
-        android:layout_width="465dp"
-        android:layout_height="172dp"
-        android:layout_marginTop="168dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/cuadroBlanco2"
-        android:layout_width="465dp"
-        android:layout_height="172dp"
-        android:layout_marginTop="572dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Contenedor con ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="-46dp">
 
-    <View
-        android:id="@+id/cuadroBlanco"
-        android:layout_width="465dp"
-        android:layout_height="172dp"
-        android:layout_marginTop="168dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HISTORIAL DE COMPRAS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.802"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="49dp" />
+            <!-- Título -->
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="141dp"
-        android:layout_height="167dp"
-        android:src="@drawable/producto1"
-        app:layout_constraintEnd_toStartOf="@+id/checkedTextView"
-        app:layout_constraintHorizontal_bias="0.173"
-        app:layout_constraintStart_toStartOf="@+id/cuadroBlanco4"
-        tools:layout_editor_absoluteY="173dp" />
+            <!-- Lista de productos -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Historial de compras "
+                android:textSize="24sp" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="141dp"
-        android:layout_height="167dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/produc2"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="375dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="141dp"
-        android:layout_height="167dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/producto3"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="577dp" />
+                <!-- Producto 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
 
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="117dp"
-        android:layout_height="138dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/img"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="19dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView"
-        android:layout_width="180dp"
-        android:layout_height="28dp"
-        android:text="Compra de nuevo"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="206dp" />
+                        <!-- Imagen del producto 1-->
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView2"
-        android:layout_width="154dp"
-        android:layout_height="32dp"
-        android:text="Precio $ 20,000"
-        tools:layout_editor_absoluteX="234dp"
-        tools:layout_editor_absoluteY="247dp" />
+                        <!-- Contenido del producto 1 -->
+                        <ImageView
+                            android:id="@+id/productImage1"
+                            android:layout_width="96dp"
+                            android:layout_height="117dp"
+                            android:src="@drawable/producto1" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView3"
-        android:layout_width="182dp"
-        android:layout_height="38dp"
-        android:text="Comprar de nuevo"
-        tools:layout_editor_absoluteX="217dp"
-        tools:layout_editor_absoluteY="407dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp">
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView4"
-        android:layout_width="128dp"
-        android:layout_height="38dp"
-        android:text="Precio $ 30,000"
-        tools:layout_editor_absoluteX="240dp"
-        tools:layout_editor_absoluteY="458dp" />
+                            <TextView
+                                android:id="@+id/productTitle1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Título del Producto 1"
+                                android:textSize="16sp" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView5"
-        android:layout_width="146dp"
-        android:layout_height="29dp"
-        android:text="Comprar de nuevo"
-        tools:layout_editor_absoluteX="233dp"
-        tools:layout_editor_absoluteY="616dp" />
+                            <TextView
+                                android:id="@+id/productDescription1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Descripción breve del producto 1"
+                                android:textSize="14sp" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView6"
-        android:layout_width="155dp"
-        android:layout_height="32dp"
-        android:text="Precio $25,000"
-        tools:layout_editor_absoluteX="233dp"
-        tools:layout_editor_absoluteY="661dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+                       </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Producto 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <!-- Imagen del producto 2 -->
+
+                        <!-- Contenido del producto 2-->
+
+
+                        <ImageView
+                            android:id="@+id/productImage2"
+                            android:layout_width="96dp"
+                            android:layout_height="117dp"
+                            android:src="@drawable/produc2" />
+
+                        <LinearLayout
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp">
+
+                            <TextView
+                                android:id="@+id/productTitle2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Título del Producto 2"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/productDescription2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Descripción breve del producto 2"
+                                android:textSize="14sp" />
+
+
+                             </LinearLayout>
+                      </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+        <!-- Producto 3 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <!-- Imagen del producto 3 -->
+
+            <!-- Contenido del producto 3-->
+
+
+            <ImageView
+                android:id="@+id/productCard3"
+                android:layout_width="96dp"
+                android:layout_height="117dp"
+                android:src="@drawable/producto3" />
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:id="@+id/productTitle3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Título del Producto 3"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/productDescription3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Descripción breve del producto 3"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+         </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Línea horizontal -->
+            <View
+                android:id="@+id/lineFoot"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="88dp"
+        android:layout_height="136dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/img_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="96dp" />
+
+</FrameLayout>
+
