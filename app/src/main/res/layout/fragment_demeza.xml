@@ -74,7 +74,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
-                                android:text="Título del Producto 1"
+                                android:text="iPhone 16"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -82,7 +82,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Descripción breve del producto 1"
+                                android:text="El iPhone 16 en color rosa ofrece un diseño elegante y sofisticado,con 128 GB de almacenamiento para guardar tus fotos, videos y aplicaciones"
                                 android:textSize="14sp" />
 
 
@@ -129,7 +129,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
-                                android:text="Título del Producto 2"
+                                android:text="iPhone 16 de 128 GB Ultramarino"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -137,7 +137,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="Descripción breve del producto 2"
+                                android:text="El iPhone 16 de 128 GB en color Ultramarino combina un diseño elegante con rendimiento avanzado, cámaras de última generación y amplia capacidad para fotos, videos y apps."
                                 android:textSize="14sp" />
 
 
@@ -199,9 +199,63 @@
          </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+                <!-- Producto 4 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <!-- Imagen del producto 4 -->
+
+                        <!-- Contenido del producto 4-->
+
+
+                        <ImageView
+                            android:id="@+id/productCard4_buttonDetails"
+                            android:layout_width="96dp"
+                            android:layout_height="117dp"
+                            android:src="@drawable/img_1" />
+
+                        <LinearLayout
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp">
+
+                            <TextView
+                                android:id="@+id/productTitle4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Apple iPhone 12 Mini"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/productCard4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="El iPhone color morado ofrece potencia compacta,pantalla Super Retina XDR de 5.4"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
 
             </LinearLayout>
-
             <!-- Línea horizontal -->
             <View
                 android:id="@+id/lineFoot"
@@ -211,15 +265,5 @@
                 android:background="@android:color/darker_gray" />
         </LinearLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="88dp"
-        android:layout_height="136dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/img_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="96dp" />
-
 </FrameLayout>
 
