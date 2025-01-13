@@ -2,13 +2,16 @@ package com.fic.bunnyshopmobiletry5.ui.emma;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -66,6 +70,15 @@ public class BlankFragment extends Fragment {
 
             login(correoControl.getText().toString(), passwordControl.getText().toString());
         });
+
+        TextView btn_register = rootView.findViewById(R.id.textView22);
+
+        btn_register.setText(Html.fromHtml("<u>¿Aún no tienes cuenta?, Haz click Aquí</u>"));
+
+
+        btn_register.setOnClickListener(v -> {
+            Navigation.findNavController(rootView).navigate(R.id.nav_RegistroFragment);
+        });
         return rootView;
     }
 
@@ -97,14 +110,18 @@ public class BlankFragment extends Fragment {
 
                         Toast.makeText(rootView.getContext(),"Acceso concedido",Toast.LENGTH_SHORT).show();
 
-                        // Guardar el JSON
-//                        SharedPreferences sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
-//                        SharedPreferences.Editor editor = sharedPreferences.edit();
-//                        Gson gson = new Gson();
+                        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("User", responseString);
+                        editor.apply();
 
+                        String userData = sharedPref.getString("User", null);
 
-                        // Asignar la respuesta al TextView
-                        // textViewResponse.setText(responseString);
+                        Log.d("Shared_Preferences", userData);
+
+                        // Navega al fragmento con el ID del producto
+                        Navigation.findNavController(rootView).navigate(R.id.nav_mario);
+
 
                     } catch (IOException e) {
                         Log.e("API_ERROR_LOGIN", "Error al leer el cuerpo de la respuesta: " + e);

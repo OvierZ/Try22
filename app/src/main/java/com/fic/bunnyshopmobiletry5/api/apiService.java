@@ -23,10 +23,16 @@ public interface apiService {
     @POST("login")
     Call<ResponseBody> login(@Field("email") String email, @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("user/crear")
+    Call<ResponseBody> register(@Field("name") String name, @Field("email") String email, @Field("password") String password);
+
     @GET("articulo/get")
     Call<ResponseBody> getCatalogo();
 
 
     @GET("articulo/get")
     Call<ResponseBody> getArticulo(@Query("id_articulos") String id_articulo);
+
+
 }
