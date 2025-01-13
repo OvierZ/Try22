@@ -81,8 +81,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="El iPhone 16 en color rosa ofrece un diseño elegante y sofisticado,con 128 GB de almacenamiento para guardar tus fotos, videos y aplicaciones"
+                                android:text="El iPhone 16 color rosa que cuenta con 128 GB de almacenamiento"
                                 android:textSize="14sp" />
+                            <Button
+                                android:id="@+id/detallesBtn1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:backgroundTint="@color/teal_700"
+                                android:text="ver detalles"
+                                android:textSize="14sp"/>
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -124,7 +132,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
-                                android:text="iPhone 16 de 128 GB Ultramarino"
+                                android:text="iPhone 16 de 128 GB "
                                 android:textSize="16sp" />
 
                             <TextView
@@ -132,8 +140,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="iphone Ultramarino es un diseño elegante con rendimiento avanzado, cámaras de última generación y amplia capacidad para fotos, videos y apps."
+                                android:text="iphone Ultramarino es un diseño elegante con rendimiento avanzado"
                                 android:textSize="14sp" />
+                            <Button
+                                android:id="@+id/detallesBtn2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:backgroundTint="@color/teal_700"
+                                android:text="ver detalles"
+                                android:textSize="14sp"/>
 
                              </LinearLayout>
                       </LinearLayout>
@@ -184,8 +200,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Es un tipo de juego electrónico interactivo diseñado para el entretenimiento"
+                    android:text="Es un juego electrónico interactivo diseñado para el entretenimiento"
                     android:textSize="14sp" />
+                <Button
+                    android:id="@+id/detallesBtn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:text="ver detalles"
+                    android:textSize="14sp"/>
 
             </LinearLayout>
          </LinearLayout>
@@ -234,8 +258,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="El iPhone color morado ofrece potencia compacta,pantalla Super Retina XDR de 5.4"
+                                android:text="El iPhone color morado con potencia compacta,pantalla Super Retina XDR de 5.4"
                                 android:textSize="14sp" />
+                      <Button
+                          android:id="@+id/detallesBtn4"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="8dp"
+                          android:backgroundTint="@color/teal_700"
+                          android:text="ver detalles"
+                          android:textSize="14sp"/>
+
+
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
