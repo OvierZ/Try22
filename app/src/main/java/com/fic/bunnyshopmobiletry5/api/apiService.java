@@ -24,6 +24,19 @@ public interface apiService {
     @POST("login")
     Call<ResponseBody> login(@Field("email") String email, @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("user/crear")
+    Call<ResponseBody> register(@Field("name") String name, @Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("compra/comprar")
+    Call<ResponseBody> comprar(
+            @Field("id_articulo") String id_articulo,
+            @Field("key_user") String key_user,
+            @Field("tarjeta") String tarjeta,
+            @Field("cvv") String cvv
+    );
+
     @GET("articulo/get")
     Call<ResponseBody> getCatalogo();
 
@@ -33,6 +46,10 @@ public interface apiService {
 
     @GET("catalog")  // Ruta del endpoint
     Call<List<Map<String, Object>>> getCatalog();
+
+    @GET("wishlist/get")
+    Call<List<Map<String, Object>>> getWishlist();
+
 }
 
 

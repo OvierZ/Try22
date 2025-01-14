@@ -77,5 +77,14 @@
         android:name="com.fic.bunnyshopmobiletry5.ui.registro.RegistroFragment"
         android:label="Registro"
         tools:layout="@layout/fragment_registro" />
+    <fragment
+        android:id="@+id/catalogoFragment"
+        android:name="com.fic.bunnyshopmobiletry5.ui.Catalogo.CatalogoFragment"
+        android:label="CatalogoFragment" />
+    <fragment
+        android:id="@+id/pagoFragment"
+        android:name="com.fic.bunnyshopmobiletry5.ui.pago.PagoFragment"
+        android:label="Pago"
+        tools:layout="@layout/fragment_pago" />
 
 </navigation>

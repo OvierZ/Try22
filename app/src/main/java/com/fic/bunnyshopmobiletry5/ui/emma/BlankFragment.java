@@ -110,12 +110,12 @@ public class BlankFragment extends Fragment {
 
                         Toast.makeText(rootView.getContext(),"Acceso concedido",Toast.LENGTH_SHORT).show();
 
-                        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = getActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString("User", responseString);
+                        editor.putString("user", responseString);
                         editor.apply();
 
-                        String userData = sharedPref.getString("User", null);
+                        String userData = sharedPref.getString("user", null);
 
                         Log.d("Shared_Preferences", userData);
 
