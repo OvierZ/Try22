@@ -72,10 +72,10 @@ public class MarioFragment extends Fragment {
 
         if (userData != null) {
             //Si existe, navegar al fragmento principal
-            //navController.navigate(R.id.nav_mario);
+            navController.navigate(R.id.nav_mario);
         } else {
             //Si no existe, navegar al login
-            //navController.navigate(R.id.nav_mario);
+            navController.navigate(R.id.nav_blank);
         }
     }
 
@@ -83,23 +83,22 @@ public class MarioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Verificar datos del usuario y navegar
+        //Verficar datos del usuario y navegar
         checkUserDataAndNavigate();
-
-        // Mostrar los datos del usuario
-        showUserDate();
     }
-
 
     //4. MOSTRAR LOS DATOS DEL USUARIO EN UN FRAGMENTO
 
     private void showUserDate() {
-        TextView usernameTextView = requireView().findViewById(R.id.textView17);
+        Object userData = getUserData();
 
-        // Establecer el texto "Mario" directamente
-        usernameTextView.setText("Mario");
+        if (userData != null) {
+            HashMap<String, Object> userMap = (HashMap<String, Object>) userData;
+
+            //MOSTRAR LOS DATOS EN LOS TEXTVIEWS
+            TextView usernameTextView = requireView().findViewById(R.id.textView17);
+
+            usernameTextView.setText("Usuario: " + userMap.get("username"));
+        }
     }
-
-
-
 }
