@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,9 +36,11 @@ import retrofit2.Response;
 
 public class JDDFragment extends Fragment {
 
-    private int productId;
+    private String productId;
 
     private JDDViewModel mViewModel;
+
+    private View rootView;
 
     public static JDDFragment newInstance() {
         return new JDDFragment();
@@ -48,9 +51,9 @@ public class JDDFragment extends Fragment {
         super.onCreate(savedInstanceState);
         // Obtener el argumento (ID del producto)
         if (getArguments() != null) {
-            String idProducto = getArguments().getString("id_producto");
-            Log.d("Producto", idProducto);
-            getArticulo(idProducto);
+            productId = getArguments().getString("id_producto");
+            Log.d("Producto", productId);
+            getArticulo(productId);
             // Usa el idProducto aquí
         }
 
@@ -61,24 +64,42 @@ public class JDDFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_j_d_d, container, false);
-        Button generateIdButton = rootView.findViewById(R.id.generate_id_button);
-        TextView tvNombre = rootView.findViewById(R.id.textView2);
 
+//        Button btn_comprar = rootView.findViewById(R.id.button_comprar);
+//
+//        btn_comprar.setOnClickListener(v->{
+//            Bundle bundle = new Bundle();
+//            bundle.putString("id_producto", productId.toString()); // Pasa el ID como String
+//
+//            // Obtén la vista desde el ViewHolder
+//            View view = holder.itemView;
+//
+//            // Navega al fragmento con el ID del producto
+//            Navigation.findNavController(view).navigate(R.id.nav_jdd, bundle);
+//        });
+        rootView = inflater.inflate(R.layout.fragment_j_d_d, container, false);
 
-        // Si no se recibió ID, muestra el botón
-        if (getArguments() == null || getArguments().getString("id_producto") == null) {
-            ((View) generateIdButton).setVisibility(View.VISIBLE);
-            ((View) generateIdButton).setOnClickListener(v -> {
-                // Generar ID aleatorio entre 1 y 24
-                int randomId = (int) (Math.random() * 24) + 1;
-                Log.d("RANDOM_ID", "ID generado: " + randomId);
-
-                // Llamar al método para obtener el artículo
-                getArticulo(String.valueOf(randomId));
-            });
-        }
         return rootView;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button btn_comprar = rootView.findViewById(R.id.button_comprar);
+
+        btn_comprar.setOnClickListener(v->{
+            Bundle bundle = new Bundle();
+            bundle.putString("id_producto", productId); // Pasa el ID como String
+
+            // Obtén la vista desde el ViewHolder
+//            View view = holder.itemView;
+
+            // Navega al fragmento con el ID del producto
+            Navigation.findNavController(rootView).navigate(R.id.pagoFragment, bundle);
+        });
+
     }
 
     @Override

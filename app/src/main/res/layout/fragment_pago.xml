@@ -39,22 +39,17 @@
             android:elevation="4dp">
 
             <!-- Número de tarjeta -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Número de Tarjeta"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="#000000" />
-
             <EditText
+                android:id="@+id/etNumeroTarjeta"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="#F9F5E7"
                 android:layout_marginBottom="16dp"
                 android:padding="8dp"
                 android:hint="Número de Tarjeta"
-                android:textColorHint="#A9A9A9" />
+                android:textColorHint="#A9A9A9"
+                android:inputType="number"
+                android:maxLength="16" />
 
             <!-- Fecha de expiración y CVV -->
             <LinearLayout
@@ -79,13 +74,15 @@
                         android:textColor="#000000" />
 
                     <EditText
+                        android:id="@+id/etFechaExpiracion"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:background="#F9F5E7"
                         android:padding="8dp"
                         android:hint="MM/AA"
                         android:textColorHint="#A9A9A9"
-                        android:inputType="datetime" />
+                        android:inputType="number"
+                        android:maxLength="5" />
                 </LinearLayout>
 
                 <!-- Espacio -->
@@ -109,18 +106,21 @@
                         android:textColor="#000000" />
 
                     <EditText
+                        android:id="@+id/etCVV"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:background="#F9F5E7"
                         android:padding="8dp"
                         android:hint="123"
                         android:textColorHint="#A9A9A9"
-                        android:inputType="numberPassword" />
+                        android:inputType="numberPassword"
+                        android:maxLength="3" />
                 </LinearLayout>
             </LinearLayout>
 
             <!-- Nombre del titular -->
             <TextView
+                android:id="@+id/etNombreTitular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -146,6 +146,7 @@
                 android:layout_marginBottom="16dp">
 
                 <CheckBox
+                    android:id="@+id/cbTerminos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -160,6 +161,7 @@
 
             <!-- Botón de envío -->
             <Button
+                android:id="@+id/btnEnviarPago"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Enviar Pago"

@@ -1,5 +1,6 @@
 package com.fic.bunnyshopmobiletry5.api;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -23,10 +24,32 @@ public interface apiService {
     @POST("login")
     Call<ResponseBody> login(@Field("email") String email, @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("user/crear")
+    Call<ResponseBody> register(@Field("name") String name, @Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("compra/comprar")
+    Call<ResponseBody> comprar(
+            @Field("id_articulo") String id_articulo,
+            @Field("key_user") String key_user,
+            @Field("tarjeta") String tarjeta,
+            @Field("cvv") String cvv
+    );
+
     @GET("articulo/get")
     Call<ResponseBody> getCatalogo();
 
 
     @GET("articulo/get")
     Call<ResponseBody> getArticulo(@Query("id_articulos") String id_articulo);
+
+    @GET("catalog")  // Ruta del endpoint
+    Call<List<Map<String, Object>>> getCatalog();
+
+    @GET("wishlist/get")
+    Call<List<Map<String, Object>>> getWishlist();
+
 }
+
+

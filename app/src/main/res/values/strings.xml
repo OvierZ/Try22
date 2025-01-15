@@ -33,4 +33,7 @@
     <string name="nombre_de_la_marca">Nombre De La Marca</string>
     <string name="modelo">Modelo</string>
     <string name="ipconfig">ipConfig</string>
+
+    <string name="refresh_info">Actualizar información</string>
+
 </resources>

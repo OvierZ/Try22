@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -25,6 +26,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.fic.bunnyshopmobiletry5.api.UserService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,10 +63,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        
-        fetchData();
-        fetchDolares();
-        login();
+
+        //fetchData();
+        //fetchDolares();
+        //login();
+        menuData();
     }
 
     @Override
@@ -79,6 +82,27 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void menuData() {
+        // Obtén la referencia al NavigationView
+        NavigationView navigationView = findViewById(R.id.nav_view); // Asegúrate de que este ID sea correcto
+        if (navigationView != null) {
+            // Obtén la vista del header
+            View headerView = navigationView.getHeaderView(0);
+
+            // Accede al TextView dentro del header
+            TextView nombreUsuario = headerView.findViewById(R.id.textView);
+
+            // Modifica el contenido del TextView
+            if (nombreUsuario != null) {
+                nombreUsuario.setText("¡Hola, usuario!");
+            } else {
+                Log.e("menuData", "No se pudo encontrar el TextView en el header.");
+            }
+        } else {
+            Log.e("menuData", "No se pudo encontrar el NavigationView.");
+        }
     }
     private void fetchData() {
         apiService apiService = RetrofitInstance.getApiService();  // Obtén la instancia del servicio API

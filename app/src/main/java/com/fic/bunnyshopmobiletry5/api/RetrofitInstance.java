@@ -8,24 +8,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
     private static Retrofit retrofit;
-    //private static final String BASE_URL = "http://192.168.22.116:8000/api/";
-//    private static final String BASE_URL = "https://9a74-2806-269-481-222-d8d9-3dfc-6276-bfdc.ngrok-free.app/api/";
-    //private static final String BASE_URL = "https://bmxnmgv0-8000.usw3.devtunnels.ms/api/";
 
+    // URL base para la API
     private static final String BASE_URL = enviroment.BASE_URL_API;
+
+
     public static apiService getApiService() {
         if (retrofit == null) {
+            // Configurar OkHttpClient con tiempos de espera personalizados
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .connectTimeout(10, TimeUnit.SECONDS) // Tiempo de espera para conectar
+                    .readTimeout(10, TimeUnit.SECONDS)   // Tiempo de espera para leer datos
+                    .writeTimeout(10, TimeUnit.SECONDS)  // Tiempo de espera para escribir datos
+                    .build();
+
+            // Construir la instancia de Retrofit
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .client(new OkHttpClient.Builder()
-                    .connectTimeout(10, TimeUnit.SECONDS)  // Tiempo de espera para conectar
-                    .readTimeout(10, TimeUnit.SECONDS)    // Tiempo de espera para leer datos
-                    .writeTimeout(10, TimeUnit.SECONDS)   // Tiempo de espera para escribir datos
-                    .build())
-                    .addConverterFactory(GsonConverterFactory.create())  // Agregar Gson como convertidor
+                    .baseUrl(BASE_URL) // Establece la URL base
+                    .client(okHttpClient) // Asocia el cliente OkHttp
+                    .addConverterFactory(GsonConverterFactory.create()) // Convertidor JSON
                     .build();
         }
-        return retrofit.create(apiService.class);
+        return retrofit.create(apiService.class); // Retorna la implementación de ApiService
     }
-
 }

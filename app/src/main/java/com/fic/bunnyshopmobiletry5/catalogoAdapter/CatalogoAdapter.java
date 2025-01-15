@@ -25,7 +25,7 @@ import java.util.Map;
 public class CatalogoAdapter extends RecyclerView.Adapter<CatalogoAdapter.CatalogoViewHolder> {
 
     private List<Map<String, Object>> productos;
-//    private List<Map<String, Object>> producto;
+    //    private List<Map<String, Object>> producto;
     private Context context;
 
     public CatalogoAdapter(Context context, List<Map<String, Object>> productos) {

@@ -14,11 +14,11 @@
         android:textSize="16sp"
         android:text="Nombre del producto" />
 
-<!--    <TextView
-        android:id="@+id/tvDescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Descripción del producto" />-->
+    <!--    <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción del producto" />-->
 
     <TextView
         android:id="@+id/tvPrecio"
