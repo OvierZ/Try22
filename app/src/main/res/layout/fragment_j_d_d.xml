@@ -216,7 +216,7 @@
             android:text="@string/color_del_producto"
             tools:ignore="VisualLintOverlap" />
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/userDirection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
