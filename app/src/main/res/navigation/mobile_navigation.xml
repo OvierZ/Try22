@@ -86,5 +86,10 @@
         android:name="com.fic.bunnyshopmobiletry5.ui.pago.PagoFragment"
         android:label="Pago"
         tools:layout="@layout/fragment_pago" />
+    <fragment
+        android:id="@+id/carritoDeComprasFragment"
+        android:name="com.fic.bunnyshopmobiletry5.ui.carritoDeCompras.carritoDeComprasFragment"
+        android:label="fragment_carrito_de_compras"
+        tools:layout="@layout/fragment_carrito_de_compras" />
 
 </navigation>

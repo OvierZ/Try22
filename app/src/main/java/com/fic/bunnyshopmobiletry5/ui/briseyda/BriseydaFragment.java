@@ -200,12 +200,11 @@ public class BriseydaFragment extends Fragment {
     }
 
     private void checkUserDataAndNavigate() {
-//        Object userData = getUserData();
-
         SharedPreferences sharedPref = getActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
 
-        // Obtener el JSON como String
         String userData = sharedPref.getString("user", null);
+
+        Log.d("User", "UserData: " + userData);
 
         NavController navController = Navigation.findNavController(requireView());
 
@@ -214,6 +213,7 @@ public class BriseydaFragment extends Fragment {
 //            navController.navigate(R.id.nav_mario);
 
             fetchCatalogData();
+            //showUserDate();
         } else {
             //Si no existe, navegar al login
             navController.navigate(R.id.nav_blank);

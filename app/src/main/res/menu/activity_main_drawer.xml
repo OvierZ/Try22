@@ -4,7 +4,7 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
+        <!--item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
@@ -19,34 +19,42 @@
         <item
             android:id="@+id/nav_prueba1"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_prueba1" />
+            android:title="@string/menu_prueba1" /-->
         <item
             android:id="@+id/nav_blank"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Emma" />
-        <item
+            android:title="Login" />
+        <!--item
             android:id="@+id/nav_jdd"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="JDD" />
+            android:title="JDD" /-->
         <item
             android:id="@+id/nav_bri"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Bri" />
+            android:title="Lista de deseados" />
         <item
             android:id="@+id/nav_mario"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Mario" />
+            android:title="Perfil" />
         <item
             android:id="@+id/nav_demeza"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Demeza" />
-        <item
+            android:title="Historial de compras" />
+        <!--item
             android:id="@+id/nav_ovier"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Ovier" />
+            android:title="Ovier" /-->
         <item
             android:id="@+id/nav_CatalogoJDD"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="CatalogoJDD" />
+            android:title="Productos" />
+        <item
+            android:id="@+id/catalogoFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Wishlist" />
+        <item
+            android:id="@+id/carritoDeComprasFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Carrito" />
     </group>
 </menu>
