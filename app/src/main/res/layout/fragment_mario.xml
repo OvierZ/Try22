@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FCEEE6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="-94dp">
@@ -28,13 +29,13 @@
             android:layout_width="131dp"
             android:layout_height="126dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/foto_perfil"
             app:layout_constraintBottom_toTopOf="@+id/textView18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.463"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-            android:src="@drawable/foto_perfil" />
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -55,18 +56,16 @@
                     android:layout_width="170dp"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/home_icon"
-                    android:text="Direccion de usuario"
-                    android:gravity="center_vertical"
                     android:drawablePadding="3dp"
-                    />
+                    android:gravity="center_vertical"
+                    android:text="Direccion de usuario" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/userDirection"
                     android:layout_width="169dp"
                     android:layout_height="35dp"
-                    android:text="TextView"
                     android:gravity="center"
-                    />
+                    android:text="TextView" />
             </TableRow>
 
             <TableRow
@@ -78,18 +77,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
                     android:drawableStart="@drawable/map_pin_icon"
-                    android:text="Ubicacíon"
-                    android:gravity="center_vertical"
                     android:drawablePadding="3dp"
-                    />
+                    android:gravity="center_vertical"
+                    android:text="Ubicacíon" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/userUbication"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="TextView"
                     android:gravity="center"
-                    />
+                    android:text="TextView" />
 
             </TableRow>
 
@@ -102,18 +99,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/phone_icon"
-                    android:text="Telefono"
-                    android:gravity="center_vertical"
                     android:drawablePadding="3dp"
-                    />
+                    android:gravity="center_vertical"
+                    android:text="Telefono" />
 
                 <TextView
-                    android:id="@+id/textView24"
+                    android:id="@+id/userPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="TextView"
                     android:gravity="center"
-                    />
+                    android:text="TextView" />
             </TableRow>
 
             <TableRow
@@ -125,18 +120,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:drawableStart="@drawable/mail_icon__2_"
-                    android:text="Mail"
-                    android:gravity="center_vertical"
                     android:drawablePadding="3dp"
-                    />
+                    android:gravity="center_vertical"
+                    android:text="Mail" />
 
                 <TextView
-                    android:id="@+id/textView250Fix"
+                    android:id="@+id/userMail"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="TextView"
                     android:gravity="center"
-                    />
+                    android:text="TextView" />
             </TableRow>
 
             <TableRow
@@ -148,18 +141,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/_666750_calendar_schedule_icon"
-                    android:text="Fecha de Nacimiento"
-                    android:gravity="center_vertical"
                     android:drawablePadding="3dp"
-                    />
+                    android:gravity="center_vertical"
+                    android:text="Fecha de Nacimiento" />
 
                 <TextView
-                    android:id="@+id/textView25Fix"
+                    android:id="@+id/userBirthday"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="TextView"
                     android:gravity="center"
-                    />
+                    android:text="TextView" />
             </TableRow>
 
             <TableRow
@@ -171,17 +162,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:drawableStart="@drawable/gender_ambiguous_icon"
-                    android:text="Sexo"
                     android:gravity="center_vertical"
-                    />
+                    android:text="Sexo" />
 
                 <TextView
-                    android:id="@+id/textView25"
+                    android:id="@+id/userSex"
                     android:layout_width="wrap_content"
                     android:layout_height="33dp"
-                    android:text="TextView"
                     android:gravity="center"
-                    />
+                    android:text="TextView" />
             </TableRow>
         </TableLayout>
 
