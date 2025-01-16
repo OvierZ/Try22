@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.service.autofill.UserData;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,8 @@ public class MarioFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MarioViewModel.class);
         // TODO: Use the ViewModel
-//        Object userData = getUserData();
+        //Object userData = getUserData();
+        checkUserDataAndNavigate();
         // Puedes usar userData segun tus necesidades
     }
 
@@ -81,7 +83,6 @@ public class MarioFragment extends Fragment {
         if (userData != null) {
             //Si existe, navegar al fragmento principal
 //            navController.navigate(R.id.nav_mario);
-
             showUserDate();
         } else {
             //Si no existe, navegar al login
@@ -133,19 +134,42 @@ public class MarioFragment extends Fragment {
         String userData = sharedPref.getString("user", null);
 
         if (userData != null) {
+
+            TextView usernameTextView = requireView().findViewById(R.id.textView17);
+            TextView TextPerfil = requireView().findViewById(R.id.textView18);
+            TextView direccionUsuario = requireView().findViewById(R.id.userDirection);
+            TextView ubicacionUsuario = requireView().findViewById(R.id.userUbication);
+            TextView telefonoUsuario = requireView().findViewById(R.id.userPhone);
+            TextView imailUsuario = requireView().findViewById(R.id.userMail);
+            TextView nacimientoUsuario = requireView().findViewById(R.id.userBirthday);
+            TextView orientacionUsuario = requireView().findViewById(R.id.userSex);
+
             try {
                 // Convertir el String JSON a un JSONObject
                 JSONObject userJson = new JSONObject(userData);
 
+                Log.d("UserData:", "Datos: " + userJson);
                 // Mostrar los datos en los TextViews
-                TextView usernameTextView = rootView.findViewById(R.id.textView17); // Usar rootView
+                //TextView usernameTextView = rootView.findViewById(R.id.textView17); // Usar rootView
 
                 // Acceder al dato "name" del JSON
                 String username = userJson.getString("name");
+                String correo = userJson.getString("email");
 
                 // Mostrar el nombre de usuario
-                usernameTextView.setText("Usuario: " + username);
+                //usernameTextView.setText("Usuario: " + username);
 
+
+                usernameTextView.setText(username);
+                imailUsuario.setText(correo);
+                /*TextPerfil.setText(sharedPreferences.getString("profileText", "Default Profile Text"));
+                direccionUsuario.setText(sharedPreferences.getString("address", "Default Address"));
+                ubicacionUsuario.setText(sharedPreferences.getString("location", "Default Location"));
+                telefonoUsuario.setText(sharedPreferences.getString("phone", "Default Phone"));
+                imailUsuario.setText(sharedPreferences.getString("email", "Default Email"));
+                nacimientoUsuario.setText(sharedPreferences.getString("birthday", "Default Birthday"));
+                orientacionUsuario.setText(sharedPreferences.getString("gender", "Default Gender"));
+            */
             } catch (Exception e) {
                 Log.e("Shared_Preferences", "Error al procesar el JSON", e);
             }
@@ -153,25 +177,8 @@ public class MarioFragment extends Fragment {
             Log.d("Shared_Preferences", "No se encontró el usuario en SharedPreferences.");
         }
 
-        TextView usernameTextView = requireView().findViewById(R.id.textView17);
-        TextView TextPerfil = requireView().findViewById(R.id.textView18);
-        TextView direccionUsuario = requireView().findViewById(R.id.userDirection);
-        TextView ubicacionUsuario = requireView().findViewById(R.id.userUbication);
-        TextView telefonoUsuario = requireView().findViewById(R.id.userPhone);
-        TextView imailUsuario = requireView().findViewById(R.id.userMail);
-        TextView nacimientoUsuari = requireView().findViewById(R.id.userBirthday);
-        TextView orientacionUsuario = requireView().findViewById(R.id.userSex);
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("user", Context.MODE_PRIVATE);
 
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE);
-
-        usernameTextView.setText(sharedPreferences.getString("username", "Default Username"));
-        TextPerfil.setText(sharedPreferences.getString("profileText", "Default Profile Text"));
-        direccionUsuario.setText(sharedPreferences.getString("address", "Default Address"));
-        ubicacionUsuario.setText(sharedPreferences.getString("location", "Default Location"));
-        telefonoUsuario.setText(sharedPreferences.getString("phone", "Default Phone"));
-        imailUsuario.setText(sharedPreferences.getString("email", "Default Email"));
-        nacimientoUsuari.setText(sharedPreferences.getString("birthday", "Default Birthday"));
-        orientacionUsuario.setText(sharedPreferences.getString("gender", "Default Gender"));
     }
 
     /**
