@@ -26,7 +26,13 @@ public interface apiService {
 
     @FormUrlEncoded
     @POST("user/crear")
-    Call<ResponseBody> register(@Field("name") String name, @Field("email") String email, @Field("password") String password);
+    Call<ResponseBody> register(
+            @Field("name") String name,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("direccion") String direccion,
+            @Field("telefono") String telefono
+    );
 
     @FormUrlEncoded
     @POST("compra/comprar")

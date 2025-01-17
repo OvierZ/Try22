@@ -2,6 +2,7 @@ package com.fic.bunnyshopmobiletry5.ui.emma;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.fic.bunnyshopmobiletry5.R;
 import com.fic.bunnyshopmobiletry5.api.apiService;
 import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
+import com.fic.bunnyshopmobiletry5.ui.dialogLoading.dialogLoading;
 import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
@@ -79,6 +81,12 @@ public class BlankFragment extends Fragment {
         btn_register.setOnClickListener(v -> {
             Navigation.findNavController(rootView).navigate(R.id.nav_RegistroFragment);
         });
+
+/*        dialogLoading loadingDialog = new dialogLoading();
+        loadingDialog.show(getParentFragmentManager(), "LoadingDialog");
+
+        // Para cerrarlo posteriormente
+        loadingDialog.dismiss();*/
         return rootView;
     }
 
@@ -87,9 +95,14 @@ public class BlankFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(BlankViewModel.class);
         // TODO: Use the ViewModel
+
     }
 
     private void login(String email, String password) {
+
+        //dialogLoading loadingDialog = new dialogLoading();
+        //loadingDialog.show(getParentFragmentManager(), "LoadingDialog");
+
         apiService apiService = RetrofitInstance.getApiService();  // Obtén la instancia del servicio API
 
         // Realiza la solicitud sin parámetros
@@ -126,12 +139,31 @@ public class BlankFragment extends Fragment {
                     } catch (IOException e) {
                         Log.e("API_ERROR_LOGIN", "Error al leer el cuerpo de la respuesta: " + e);
                         Toast.makeText(rootView.getContext(),"Ocurrio un error en la respuesta",Toast.LENGTH_SHORT).show();
-
+                        new AlertDialog.Builder(rootView.getContext())
+                                .setTitle("Error en el servidor")
+                                .setMessage("Verifica: BlankFragment/login")
+                                .setPositiveButton("Aceptar", (dialog, which) -> {
+                                    // Acción al presionar el botón Aceptar
+                                })
+                                /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                                    // Acción al presionar el botón Cancelar
+                                })*/
+                                .show();
                     }
                 } else {
                     // Si la respuesta no es exitosa, muestra el error en el TextView
                     Log.e("API_ERROR_LOGIN", "Error en la respuesta: Código " + response.code() + ", Mensaje: " + response);
                     Log.e("API_ERROR_LOGIN", "Error en la respuesta" + response);
+                    new AlertDialog.Builder(rootView.getContext())
+                            .setTitle("Acceso denegado")
+                            .setMessage("Tus credenciales de acceso son incorrectas, verificalas e intenta de nuevo...")
+                            .setPositiveButton("Aceptar", (dialog, which) -> {
+                                // Acción al presionar el botón Aceptar
+                            })
+                            /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                                // Acción al presionar el botón Cancelar
+                            })*/
+                            .show();
                     Toast.makeText(rootView.getContext(),"Acceso denegado",Toast.LENGTH_SHORT).show();
 
                     //textViewResponse.setText("Error en la respuesta: " + response.message());
@@ -144,8 +176,21 @@ public class BlankFragment extends Fragment {
                 Log.e("API_ERROR_LOGIN", "Error en la solicitud: " + t);
                 Toast.makeText(rootView.getContext(),"Algo salió mal...",Toast.LENGTH_SHORT).show();
 
+                new AlertDialog.Builder(rootView.getContext())
+                        .setTitle("La petición falló...")
+                        .setMessage("Verifica: BlankFragment/login")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                            // Acción al presionar el botón Aceptar
+                        })
+                        /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                            // Acción al presionar el botón Cancelar
+                        })*/
+                        .show();
             }
         });
+
+        // Para cerrarlo posteriormente
+        //loadingDialog.dismiss();
     }
 
 }

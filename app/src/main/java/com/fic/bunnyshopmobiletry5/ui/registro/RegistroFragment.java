@@ -2,6 +2,7 @@ package com.fic.bunnyshopmobiletry5.ui.registro;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -51,19 +52,39 @@ public class RegistroFragment extends Fragment {
 
         btn_register.setOnClickListener(v -> {
 
+            btn_register.setEnabled(false);
+
             EditText email = rootView.findViewById(R.id.email);
             EditText name = rootView.findViewById(R.id.nombre);
             EditText password = rootView.findViewById(R.id.password);
             EditText passwordRepeat = rootView.findViewById(R.id.password_repeat);
+            EditText direccion = rootView.findViewById(R.id.direccion);
+            EditText telefono = rootView.findViewById(R.id.telefono);
 
             if(!password.getText().toString().equals(passwordRepeat.getText().toString())){
 
                 Toast.makeText(rootView.getContext(),"Repita correctamente la contraseña",Toast.LENGTH_LONG).show();
 
+                new AlertDialog.Builder(rootView.getContext())
+                        .setTitle("Las contraseñas no coinciden...")
+                        .setMessage("Repita las contraseñas correctamente para continuar...")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                            // Acción al presionar el botón Aceptar
+                        })
+                        /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                            // Acción al presionar el botón Cancelar
+                        })*/
+                        .show();
                 Log.d("Contraseñas", "Contraseña: " + password + " y contraseña repetida : "+ passwordRepeat);
                 return;
             }
-            registrarse(name.getText().toString(), email.getText().toString(), password.getText().toString());
+            registrarse(
+                    name.getText().toString(),
+                    email.getText().toString(),
+                    password.getText().toString(),
+                    direccion.getText().toString(),
+                    telefono.getText().toString()
+            );
 
         });
 
@@ -77,11 +98,11 @@ public class RegistroFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
-    private void registrarse(String name, String email, String password){
+    private void registrarse(String name, String email, String password, String direccion, String telefono){
         apiService apiService = RetrofitInstance.getApiService();  // Obtén la instancia del servicio API
 
         // Realiza la solicitud sin parámetros
-        Call<ResponseBody> call = apiService.register(name, email, password);  // Usamos ResponseBody para obtener la respuesta cruda
+        Call<ResponseBody> call = apiService.register(name, email, password, direccion, telefono);  // Usamos ResponseBody para obtener la respuesta cruda
 
         // Ejecuta la solicitud de forma asíncrona
         call.enqueue(new Callback<ResponseBody>() {
@@ -120,6 +141,16 @@ public class RegistroFragment extends Fragment {
                         Log.e("API_ERROR_REGISTER", "Error al leer el cuerpo de la respuesta: " + e);
                         Toast.makeText(rootView.getContext(),"Ocurrio un error en la respuesta",Toast.LENGTH_SHORT).show();
 
+                        new AlertDialog.Builder(rootView.getContext())
+                                .setTitle("Error en el servidor ...")
+                                .setMessage("Verifica: RegistroFragment/registrarse")
+                                .setPositiveButton("Aceptar", (dialog, which) -> {
+                                    // Acción al presionar el botón Aceptar
+                                })
+                                /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                                    // Acción al presionar el botón Cancelar
+                                })*/
+                                .show();
                     }
 
                 } else {
@@ -128,6 +159,16 @@ public class RegistroFragment extends Fragment {
                     Log.e("API_ERROR_REGISTER", "Error en la respuesta" + response);
                     Toast.makeText(rootView.getContext(),"Falta parametros",Toast.LENGTH_SHORT).show();
 
+                    new AlertDialog.Builder(rootView.getContext())
+                            .setTitle("Error al enviar la petición...")
+                            .setMessage("Verifica: BlankFragment/login")
+                            .setPositiveButton("Aceptar", (dialog, which) -> {
+                                // Acción al presionar el botón Aceptar
+                            })
+                            /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                                // Acción al presionar el botón Cancelar
+                            })*/
+                            .show();
                     //textViewResponse.setText("Error en la respuesta: " + response.message());
                 }
             }
@@ -138,6 +179,16 @@ public class RegistroFragment extends Fragment {
                 Log.e("API_ERROR_REGISTER", "Error en la solicitud: " + t);
                 Toast.makeText(rootView.getContext(),"Algo salió mal...",Toast.LENGTH_SHORT).show();
 
+                new AlertDialog.Builder(rootView.getContext())
+                        .setTitle("La petición falló...")
+                        .setMessage("Verifica: RegistroFragment/registrarse")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                            // Acción al presionar el botón Aceptar
+                        })
+                        /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                            // Acción al presionar el botón Cancelar
+                        })*/
+                        .show();
             }
         });
     }
