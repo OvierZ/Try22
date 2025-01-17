@@ -78,7 +78,22 @@ public class JDDFragment extends Fragment {
 //            Navigation.findNavController(view).navigate(R.id.nav_jdd, bundle);
 //        });
         rootView = inflater.inflate(R.layout.fragment_j_d_d, container, false);
+        Button generateIdButton = rootView.findViewById(R.id.generate_id_button);
+        TextView tvNombre = rootView.findViewById(R.id.textView2);
 
+
+        // Si no se recibió ID, muestra el botón
+        if (getArguments() == null || getArguments().getString("id_producto") == null) {
+            ((View) generateIdButton).setVisibility(View.VISIBLE);
+            ((View) generateIdButton).setOnClickListener(v -> {
+                // Generar ID aleatorio entre 1 y 24
+                int randomId = (int) (Math.random() * 24) + 1;
+                Log.d("RANDOM_ID", "ID generado: " + randomId);
+
+                // Llamar al método para obtener el artículo
+                getArticulo(String.valueOf(randomId));
+            });
+        }
         return rootView;
     }
 
@@ -88,16 +103,32 @@ public class JDDFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button btn_comprar = rootView.findViewById(R.id.button_comprar);
+        Button btn_agregarCarrito = rootView.findViewById(R.id.button2);
+        Button btn_favorito = rootView.findViewById(R.id.button3);
 
         btn_comprar.setOnClickListener(v->{
             Bundle bundle = new Bundle();
             bundle.putString("id_producto", productId); // Pasa el ID como String
 
             // Obtén la vista desde el ViewHolder
-//            View view = holder.itemView;
+            // View view = holder.itemView;
 
             // Navega al fragmento con el ID del producto
             Navigation.findNavController(rootView).navigate(R.id.pagoFragment, bundle);
+        });
+
+        btn_agregarCarrito.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("id_producto", productId); // Pasa el ID como String
+
+            Navigation.findNavController(rootView).navigate(R.id.nav_ovier, bundle);
+        });
+
+        btn_favorito.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("id_producto", productId); // Pasa el ID como String
+
+            Navigation.findNavController(rootView).navigate(R.id.nav_bri, bundle);
         });
 
     }
@@ -164,7 +195,5 @@ public class JDDFragment extends Fragment {
                 Log.e("API_ERROR_CATALOGO", "Error en la solicitud", t);
             }
         });
-
     }
-
 }
