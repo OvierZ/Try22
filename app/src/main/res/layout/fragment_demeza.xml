@@ -27,11 +27,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:text="Historial de compras "
+                android:textSize="24sp"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Historial de compras "
-                android:textSize="24sp" />
+                android:layout_marginBottom="16dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,10 +87,13 @@
                                 android:id="@+id/detallesBtn1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="16dp"
                                 android:backgroundTint="@color/teal_700"
                                 android:text="ver detalles"
-                                android:textSize="14sp"/>
+                                android:textSize="14sp"
+                                android:textColor="@android:color/white" />
+
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -121,7 +124,7 @@
                             android:src="@drawable/produc2" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="16dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
@@ -147,9 +150,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
+                                android:layout_gravity="center_horizontal"
                                 android:backgroundTint="@color/teal_700"
                                 android:text="ver detalles"
-                                android:textSize="14sp"/>
+                                android:textSize="14sp"
+                                android:textColor="@android:color/white" />
 
                              </LinearLayout>
                       </LinearLayout>
@@ -207,9 +212,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
                     android:backgroundTint="@color/teal_700"
                     android:text="ver detalles"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
          </LinearLayout>
@@ -258,16 +265,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="El iPhone color morado con potencia compacta,pantalla Super Retina XDR de 5.4"
+                                android:text="iPhone color morado con potencia compacta,pantalla Super Retina XDR de 5.4"
                                 android:textSize="14sp" />
                       <Button
                           android:id="@+id/detallesBtn4"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_marginTop="8dp"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_marginTop="0dp"
                           android:backgroundTint="@color/teal_700"
                           android:text="ver detalles"
-                          android:textSize="14sp"/>
+                          android:textSize="14sp"
+                          android:textColor="@android:color/white" />
 
 
                         </LinearLayout>
