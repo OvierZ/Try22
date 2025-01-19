@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import android.widget.Button;
+import android.widget.LinearLayout;
+
 
 
 import android.util.Log;
@@ -62,6 +64,12 @@ public class carritoDeComprasFragment extends Fragment {
         SharedPreferences sharedPref = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
         String cartData = sharedPref.getString("cart", null);
 
+        // Obtener el contenedor que contiene los productos
+       // LinearLayout cartLayout = rootView.findViewById(R.id.cardLeyoutCarrito); // Suponiendo que todo el contenido del carrito está en un LinearLayout
+
+        // Limpiar la vista antes de mostrar los productos
+       // cartLayout.removeAllViews();
+
         if (cartData != null) {
             try {
                 // Convertir el String JSON a un JSONObject
@@ -101,16 +109,7 @@ public class carritoDeComprasFragment extends Fragment {
         }
     }
 
-    /**
-     * Método para eliminar un producto del carrito en SharedPreferences.
-     */
-    private void deleteProductFromCart() {
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("cart"); // Eliminar el carrito almacenado
-        editor.apply();
-        Log.d("CarritoFragment", "Producto eliminado del carrito.");
-    }
+
 
     /**
      * Método para guardar datos del carrito de compras en SharedPreferences.
@@ -150,5 +149,25 @@ public class carritoDeComprasFragment extends Fragment {
             navController.navigate(R.id.pagoFragment);
         });
     }
+
+    // Método para eliminar el producto del carrito visualmente y en SharedPreferences
+    private void deleteProductFromCart() {
+        // Eliminar el producto de SharedPreferences
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("cart"); // Eliminar el carrito almacenado
+        editor.apply();
+
+        // Eliminar el LinearLayout que contiene el producto en la vista
+        LinearLayout productLayout = rootView.findViewById(R.id.contenedorProductos); // Suponiendo que el LinearLayout del producto tiene este ID
+        if (productLayout != null) {
+            // Eliminar el producto de la vista
+            ((ViewGroup) productLayout.getParent()).removeView(productLayout);
+            Log.d("CarritoFragment", "Producto eliminado de la vista.");
+        }
+
+        // Volver a mostrar el carrito actualizado
+        showCartData();
 }
 
+}

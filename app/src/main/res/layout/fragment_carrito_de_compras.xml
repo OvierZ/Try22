@@ -105,13 +105,15 @@
 
                 <!-- Producto 1 -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardLeyoutCarrito"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
                     <LinearLayout
+
+                        android:id="@+id/contenedorProductos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
