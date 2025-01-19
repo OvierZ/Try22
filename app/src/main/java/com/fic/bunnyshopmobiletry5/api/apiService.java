@@ -14,6 +14,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface apiService {
+
     @GET("cotizaciones/usd")
     Call<ResponseBody> getData();
 
@@ -40,7 +41,6 @@ public interface apiService {
     @GET("articulo/get")
     Call<ResponseBody> getCatalogo();
 
-
     @GET("articulo/get")
     Call<ResponseBody> getArticulo(@Query("id_articulos") String id_articulo);
 
@@ -50,6 +50,14 @@ public interface apiService {
     @GET("wishlist/get")
     Call<List<Map<String, Object>>> getWishlist();
 
+    // Ruta para agregar un artículo a la wishlist
+    @FormUrlEncoded
+    @POST("wishlist/add")  // Esta ruta debe ser la que agrega el artículo a la wishlist
+    Call<Void> addToWishlist(
+            @Field("id_articulo") String id_articulo,
+            @Field("key_user") String key_user
+    );
 }
+
 
 
