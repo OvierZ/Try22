@@ -2,6 +2,7 @@ package com.fic.bunnyshopmobiletry5.ui.CatalogoJDD;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import com.fic.bunnyshopmobiletry5.catalogoAdapter.CatalogoAdapter;
+import com.fic.bunnyshopmobiletry5.ui.dialogLoading.dialogLoading;
 
 public class CatalogoJDDFragment extends Fragment {
 
@@ -68,6 +70,10 @@ public class CatalogoJDDFragment extends Fragment {
     }
 
     private void obtenerCatalogo() {
+
+        dialogLoading loadingDialog = new dialogLoading();
+        loadingDialog.show(getParentFragmentManager(), "LoadingDialog");
+
         apiService apiService = RetrofitInstance.getApiService();
         Call<ResponseBody> call = apiService.getCatalogo();
 
@@ -97,18 +103,62 @@ public class CatalogoJDDFragment extends Fragment {
                         // Notifica al adaptador que los datos han cambiado
                         adapter.notifyDataSetChanged();
 
+                        // Para cerrarlo posteriormente
+                        loadingDialog.dismiss();
+
                     } catch (Exception e) {
                         Log.e("API_ERROR_CATALOGO", "Error procesando la respuesta", e);
+                        new AlertDialog.Builder(rootView.getContext())
+                                .setTitle("Error en el servidor...")
+                                .setMessage("Verifica: CatalogoJDDFragment/obtenerCatalog")
+                                .setPositiveButton("Aceptar", (dialog, which) -> {
+                                    // Acción al presionar el botón Aceptar
+                                })
+                                /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                                    // Acción al presionar el botón Cancelar
+                                })*/
+                                .show();
+                        // Para cerrarlo posteriormente
+                        loadingDialog.dismiss();
                     }
                 } else {
                     Log.e("API_ERROR_CATALOGO", "Error en la respuesta: " + response.message());
+
+                    new AlertDialog.Builder(rootView.getContext())
+                            .setTitle("Error al solicitar el catalogo")
+                            .setMessage("Verifica: CatalogoJDDFragment/obtenerCatalog")
+                            .setPositiveButton("Aceptar", (dialog, which) -> {
+                                // Acción al presionar el botón Aceptar
+                            })
+                            /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                                // Acción al presionar el botón Cancelar
+                            })*/
+                            .show();
+
+                    // Para cerrarlo posteriormente
+                    loadingDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e("API_ERROR_CATALOGO", "Error en la solicitud", t);
+                new AlertDialog.Builder(rootView.getContext())
+                        .setTitle("La petición falló")
+                        .setMessage("Verifica: CatalogoJDDFragment/obtenerCatalog")
+                        .setPositiveButton("Aceptar", (dialog, which) -> {
+                            // Acción al presionar el botón Aceptar
+                        })
+                        /*.setNegativeButton("Cancelar", (dialog, which) -> {
+                            // Acción al presionar el botón Cancelar
+                        })*/
+                        .show();
+                // Para cerrarlo posteriormente
+                loadingDialog.dismiss();
             }
+
+
         });
+
     }
 }

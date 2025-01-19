@@ -30,24 +30,22 @@
                 android:id="@+id/imageView4"
                 android:layout_width="131dp"
                 android:layout_height="126dp"
+                android:layout_marginTop="35dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/foto_perfil"
-                app:layout_constraintBottom_toTopOf="@+id/textView18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.463"
+                app:layout_constraintTop_toTopOf="@+id/imageView2"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
             <TableLayout
                 android:id="@+id/tableLayout"
                 android:layout_width="331dp"
-                android:layout_height="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="80dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView18"
-                app:layout_constraintVertical_bias="0.353">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -145,17 +143,17 @@
                         android:drawableStart="@drawable/_666750_calendar_schedule_icon"
                         android:drawablePadding="3dp"
                         android:gravity="center_vertical"
-                        android:text="Fecha de Nacimiento" />
+                        android:text="Fecha de afiliación" />
 
                     <TextView
-                        android:id="@+id/userBirthday"
+                        android:id="@+id/userAfiliacion"
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
                         android:gravity="center"
                         android:text="TextView" />
                 </TableRow>
 
-                <TableRow
+                <!--TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -173,21 +171,33 @@
                         android:layout_height="33dp"
                         android:gravity="center"
                         android:text="TextView" />
-                </TableRow>
+                </TableRow-->
             </TableLayout>
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:hint=""
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textView18"
+                app:layout_constraintBottom_toTopOf="@+id/tableLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
+            <Button
+                android:id="@+id/btn_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="Cerrar sesión"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+            <!--TextView
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -196,7 +206,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintTop_toTopOf="@+id/imageView2" /-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

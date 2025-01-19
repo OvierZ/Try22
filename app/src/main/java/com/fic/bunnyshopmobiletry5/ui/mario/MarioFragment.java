@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.fic.bunnyshopmobiletry5.R;
@@ -45,6 +46,11 @@ public class MarioFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_mario, container, false);
 
+        Button btn_out = rootView.findViewById(R.id.btn_out);
+
+        btn_out.setOnClickListener( v-> {
+            logOut();
+        });
         return rootView;
     }
 
@@ -60,19 +66,21 @@ public class MarioFragment extends Fragment {
 
 
     private Object getUserData() {
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+        try {
+            SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
 
-        //Leer el JSON desde SharedPreferences
-        String json = sharedPreferences.getString("user", null);
+            // Leer el JSON desde SharedPreferences
+            String json = sharedPreferences.getString("user", null);
 
-        if (json != null) {
-            //Convertir el JSON de nuevo a un objeto
-            Gson gson = new Gson();
-            return gson.fromJson(json, new TypeToken<HashMap<String,
-                    Object>>() {
-            }.getType());
+            if (json != null) {
+                // Convertir el JSON de nuevo a un objeto
+                Gson gson = new Gson();
+                return gson.fromJson(json, new TypeToken<HashMap<String, Object>>() {}.getType());
+            }
+        } catch (Exception e) {
+            Log.e("getUserData", "Error al obtener los datos del usuario", e);
         }
-        return null; //Retornar null si no exite
+        return null; // Retornar null si no existe
     }
 
     private void checkUserDataAndNavigate() {
@@ -86,18 +94,19 @@ public class MarioFragment extends Fragment {
             showUserDate();
         } else {
             //Si no existe, navegar al login
-            navController.navigate(R.id.nav_blank);
+            navController.navigate(R.id.action_perfil_to_login);
         }
     }
 
-    @Override
+/*    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //logOut();
         //Verficar datos del usuario y navegar
         checkUserDataAndNavigate();
     }
-
+*/
 
     /**
      * Método para guardar datos de usuario en SharedPreferences.
@@ -136,13 +145,13 @@ public class MarioFragment extends Fragment {
         if (userData != null) {
 
             TextView usernameTextView = requireView().findViewById(R.id.textView17);
-            TextView TextPerfil = requireView().findViewById(R.id.textView18);
+            //TextView TextPerfil = requireView().findViewById(R.id.textView18);
             TextView direccionUsuario = requireView().findViewById(R.id.userDirection);
             TextView ubicacionUsuario = requireView().findViewById(R.id.userUbication);
             TextView telefonoUsuario = requireView().findViewById(R.id.userPhone);
             TextView imailUsuario = requireView().findViewById(R.id.userMail);
-            TextView nacimientoUsuario = requireView().findViewById(R.id.userBirthday);
-            TextView orientacionUsuario = requireView().findViewById(R.id.userSex);
+            TextView afiliacion = requireView().findViewById(R.id.userAfiliacion);
+            //TextView orientacionUsuario = requireView().findViewById(R.id.userSex);
 
             try {
                 // Convertir el String JSON a un JSONObject
@@ -153,8 +162,11 @@ public class MarioFragment extends Fragment {
                 //TextView usernameTextView = rootView.findViewById(R.id.textView17); // Usar rootView
 
                 // Acceder al dato "name" del JSON
-                String username = userJson.getString("name");
-                String correo = userJson.getString("email");
+                String username = userJson.has("name") ? userJson.getString("name"): "Sin nombre";
+                String correo = userJson.has("email") ? userJson.getString("email") : "Sin correo";
+                String direccion = userJson.has("direccion") ? userJson.getString("direccion") : "";
+                String telefono = userJson.has("telefono") ? userJson.getString("telefono") : "Sin telefono";
+                String created_at = userJson.has("created_at") ? userJson.getString("created_at") : "";
 
                 // Mostrar el nombre de usuario
                 //usernameTextView.setText("Usuario: " + username);
@@ -162,6 +174,10 @@ public class MarioFragment extends Fragment {
 
                 usernameTextView.setText(username);
                 imailUsuario.setText(correo);
+                direccionUsuario.setText(direccion);
+                telefonoUsuario.setText(telefono);
+                afiliacion.setText(created_at);
+
                 /*TextPerfil.setText(sharedPreferences.getString("profileText", "Default Profile Text"));
                 direccionUsuario.setText(sharedPreferences.getString("address", "Default Address"));
                 ubicacionUsuario.setText(sharedPreferences.getString("location", "Default Location"));
@@ -213,5 +229,22 @@ public class MarioFragment extends Fragment {
 
         return isFirstRun;
     }
+
+    private void logOut() {
+        // Obtén las preferencias compartidas
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+
+        // Obtén el editor de las preferencias
+        SharedPreferences.Editor preferencesEditor = sharedPreferences.edit();
+
+        // Limpia todas las preferencias
+        preferencesEditor.clear();
+        preferencesEditor.apply(); // O preferencesEditor.commit();
+
+        NavController navController = Navigation.findNavController(requireView());
+
+        navController.navigate(R.id.action_perfil_to_login);
+    }
+
 }
 

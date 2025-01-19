@@ -5,9 +5,7 @@ import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -56,6 +54,11 @@ public interface apiService {
     @GET("wishlist/get")
     Call<List<Map<String, Object>>> getWishlist();
 
+    @GET("carrito/get")
+    Call<List<Map<String, Object>>> getCarrito();
+
+    @GET("compra/get")
+    Call<ResponseBody> getCompras(@Query("key_user") String key_user);
 }
 
 

@@ -1,9 +1,14 @@
 package com.fic.bunnyshopmobiletry5;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -28,10 +33,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import com.fic.bunnyshopmobiletry5.api.UserService;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    private SharedPreferences sharedPreferences;
+    private static final String PREFERENCES_NAME = "UserPreferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +96,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void menuData() {
+
+        // Inicializar SharedPreferences
+        sharedPreferences = getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+
+        String userData = sharedPreferences.getString("user", null);
+
         // Obtén la referencia al NavigationView
         NavigationView navigationView = findViewById(R.id.nav_view); // Asegúrate de que este ID sea correcto
-        if (navigationView != null) {
+        if (navigationView != null && userData != null) {
+
             // Obtén la vista del header
             View headerView = navigationView.getHeaderView(0);
 
@@ -95,11 +113,20 @@ public class MainActivity extends AppCompatActivity {
             TextView nombreUsuario = headerView.findViewById(R.id.textView);
 
             // Modifica el contenido del TextView
-            if (nombreUsuario != null) {
-                nombreUsuario.setText("¡Hola, usuario!");
-            } else {
-                Log.e("menuData", "No se pudo encontrar el TextView en el header.");
+
+            try {
+                // Convertir el String JSON a un JSONObject
+                JSONObject userJson = new JSONObject(userData);
+
+                String nombre = userJson.has("name") ? userJson.getString("name") : "";
+
+                nombreUsuario.setText("¡Bienvenido, " + nombre +"!");
+
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
+
+
         } else {
             Log.e("menuData", "No se pudo encontrar el NavigationView.");
         }
@@ -130,6 +157,14 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("API_ERROR", "Error al leer el cuerpo de la respuesta: " + e.getMessage());
                     }
                 } else {
+                    // Si la respuesta no es exitosa, muestra el error en el TextView
+                    Log.e("API_ERROR", "Error en la respuesta: Código " + response.code() + ", Mensaje: " + response.toString());
+                    //textViewResponse.setText("Error en la respuesta: " + response.message());
+                }{
+                    // Si la respuesta no es exitosa, muestra el error en el TextView
+                    Log.e("API_ERROR", "Error en la respuesta: Código " + response.code() + ", Mensaje: " + response.toString());
+                    //textViewResponse.setText("Error en la respuesta: " + response.message());
+                }{
                     // Si la respuesta no es exitosa, muestra el error en el TextView
                     Log.e("API_ERROR", "Error en la respuesta: Código " + response.code() + ", Mensaje: " + response.toString());
                     //textViewResponse.setText("Error en la respuesta: " + response.message());
@@ -247,5 +282,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*private void checkUserDataAndNavigate() {
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+
+        String userData = sharedPref.getString("user", null);
+
+        Log.d("User", "UserData: " + userData);
+
+        NavController navController = Navigation.findNavController();
+
+        JSONObject userJson;
+        if (userData != null) {
+            //Si existe, navegar al fragmento principal
+            //navController.navigate(R.id.nav_mario);
+            Log.d("UserData", "DATOS: " + userData);
+
+            try {
+                // Convertir el String JSON a un JSONObject
+                userJson = new JSONObject(userData);
+                //obtenerHistorial(userJson.getString("id_user"));
+
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+        } else {
+            //Si no existe, navegar al login
+            navController.navigate(R.id.nav_blank);
+        }
+    }*/
 
 }

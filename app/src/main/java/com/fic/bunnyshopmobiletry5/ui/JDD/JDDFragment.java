@@ -114,7 +114,7 @@ public class JDDFragment extends Fragment {
             // View view = holder.itemView;
 
             // Navega al fragmento con el ID del producto
-            Navigation.findNavController(rootView).navigate(R.id.pagoFragment, bundle);
+            Navigation.findNavController(rootView).navigate(R.id.action_detalles_to_comprar, bundle);
         });
 
         btn_agregarCarrito.setOnClickListener(v -> {

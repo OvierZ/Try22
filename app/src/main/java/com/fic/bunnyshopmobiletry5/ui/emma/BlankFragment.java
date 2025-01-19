@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.text.Html;
@@ -30,6 +31,8 @@ import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
 import com.fic.bunnyshopmobiletry5.ui.dialogLoading.dialogLoading;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
@@ -95,7 +98,7 @@ public class BlankFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(BlankViewModel.class);
         // TODO: Use the ViewModel
-
+        checkUserDataAndNavigate();
     }
 
     private void login(String email, String password) {
@@ -133,7 +136,9 @@ public class BlankFragment extends Fragment {
                         Log.d("Shared_Preferences", userData);
 
                         // Navega al fragmento con el ID del producto
-                        Navigation.findNavController(rootView).navigate(R.id.nav_mario);
+                        //Navigation.findNavController(rootView).navigate(R.id.nav_mario);
+
+                        Navigation.findNavController(rootView).navigate(R.id.action_login_to_perfil);
 
 
                     } catch (IOException e) {
@@ -191,6 +196,34 @@ public class BlankFragment extends Fragment {
 
         // Para cerrarlo posteriormente
         //loadingDialog.dismiss();
+    }
+
+    private void checkUserDataAndNavigate() {
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+
+        String userData = sharedPref.getString("user", null);
+
+        Log.d("User", "UserData: " + userData);
+
+        NavController navController = Navigation.findNavController(requireView());
+
+        JSONObject userJson;
+        if (userData != null) {
+            //Si existe, navegar al fragmento principal
+            //navController.navigate(R.id.nav_mario);
+            Log.d("UserData", "DATOS: " + userData);
+
+            try {
+                // Convertir el String JSON a un JSONObject
+                userJson = new JSONObject(userData);
+                //obtenerHistorial(userJson.getString("id_user"));
+                navController.navigate(R.id.action_login_to_perfil);
+
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
     }
 
 }
