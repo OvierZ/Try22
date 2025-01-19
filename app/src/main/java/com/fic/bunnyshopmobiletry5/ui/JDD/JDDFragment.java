@@ -2,6 +2,8 @@ package com.fic.bunnyshopmobiletry5.ui.JDD;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,14 +18,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.fic.bunnyshopmobiletry5.R;
 import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
+import com.fic.bunnyshopmobiletry5.api.UserService;
 import com.fic.bunnyshopmobiletry5.api.apiService;
 import com.fic.bunnyshopmobiletry5.api.enviroment;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
@@ -59,6 +64,7 @@ public class JDDFragment extends Fragment {
 
         Log.d("SIN ARGUMENTOS", "ALgo Salio mal");
 
+
     }
 
     @Override
@@ -79,8 +85,6 @@ public class JDDFragment extends Fragment {
 //        });
         rootView = inflater.inflate(R.layout.fragment_j_d_d, container, false);
         Button generateIdButton = rootView.findViewById(R.id.generate_id_button);
-        TextView tvNombre = rootView.findViewById(R.id.textView2);
-
 
         // Si no se recibió ID, muestra el botón
         if (getArguments() == null || getArguments().getString("id_producto") == null) {
@@ -97,6 +101,26 @@ public class JDDFragment extends Fragment {
         return rootView;
     }
 
+    private String getUserIdFromPreferences() {
+        // Obtener las SharedPreferences
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+        // Obtener los datos del usuario como String
+        String userData = sharedPref.getString("user", null);
+        Log.d("User_Data", "Datos completos: " + userData);
+        // Procesar el JSON para obtener el ID del usuario
+        if (userData != null) {
+            try {
+                JSONObject userJson = new JSONObject(userData);
+                return userJson.getString("id_user");
+            } catch (JSONException e) {
+                Log.e("JSON_ERROR", "Error al procesar el JSON: " + e);
+            }
+        } else {
+            Log.d("Shared_Preferences", "No se encontraron datos del usuario.");
+        }
+        // Retornar null si no hay datos o ocurrió un error
+        return null;
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -104,9 +128,19 @@ public class JDDFragment extends Fragment {
 
         Button btn_comprar = rootView.findViewById(R.id.button_comprar);
         Button btn_agregarCarrito = rootView.findViewById(R.id.button2);
-        Button btn_favorito = rootView.findViewById(R.id.button3);
+        Button btn_wishlist = rootView.findViewById(R.id.button3);
 
-        btn_comprar.setOnClickListener(v->{
+        apiService api = RetrofitInstance.getApiService();
+
+        String finalUserId = getUserIdFromPreferences();
+        boolean isUserLoggedIn = (finalUserId != null && !finalUserId.isEmpty());
+
+        //Comprar
+        btn_comprar.setOnClickListener(v -> {
+            if (!isUserLoggedIn) {
+                Toast.makeText(getContext(), "Inicie sesión primeramente", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Bundle bundle = new Bundle();
             bundle.putString("id_producto", productId); // Pasa el ID como String
 
@@ -117,20 +151,102 @@ public class JDDFragment extends Fragment {
             Navigation.findNavController(rootView).navigate(R.id.pagoFragment, bundle);
         });
 
+        //WishList
+        //Verificar si el producto esta en la wishlist
+        api.wishlistCheck(productId, finalUserId).enqueue(new Callback<ResponseBody>() {
+            //Conecto
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                //Respondio
+                if (response.isSuccessful()) {
+                    try {
+                        String responseString = response.body().string();
+                        JSONObject jsonResponse = new JSONObject(responseString);
+                        boolean isInWishlist = jsonResponse.getBoolean("Message");
+                        btn_wishlist.setText(isInWishlist ? "Quitar De La Wishlist" : "Agregar A La Wishlist");
+                    } catch (Exception e) {
+                        Log.e("WISHLIST_CHECK", "Error procesando la respuesta", e);
+                    }
+                    //No Respondio
+                } else {
+                    Log.e("WISHLIST_CHECK", "Error al verificar wishlist: " + response.code());
+                }
+            }
+
+            //No Conecto
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("WISHLIST_CHECK", "Error de conexión", t);
+            }
+        });
+
+        // Configurar el listener para el botón wishlist
+        btn_wishlist.setOnClickListener(v -> {
+            if (!isUserLoggedIn) {
+                Toast.makeText(getContext(), "Inicie sesión primeramente", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String action = btn_wishlist.getText().toString();
+            if (action.equals("Agregar A La Wishlist")) {
+                //Agregar a la wishlist
+                api.wishlistAgg(productId, finalUserId).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                            btn_wishlist.setText("Quitar De La Wishlist");
+                            Log.d("WISHLIST_ACTION", "Producto agregado a la wishlist");
+                        }else{
+                            Log.e("WISHLIST_ACTION", "Error al agregar: " + response.code());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("WISHLIST_ACTION", "Error de conexión", t);
+                    }
+                });
+            }else if (action.equals("Quitar De La Wishlist")){
+                //Quitar De La Wishlist
+                api.wishlistDelete(productId, finalUserId).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if(response.isSuccessful()){
+                            btn_wishlist.setText("Agregar A La Wishlist");
+                            Log.d("WISHLIST_ACTION", "Producto eliminado de la wishlist");
+                        }else {
+                            Log.e("WISHLIST_ACTION", "Error al eliminar: " + response.code());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("WISHLIST_ACTION", "Error de conexión", t);
+                    }
+                });
+            }
+        });
+
+        //Carrito
         btn_agregarCarrito.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("id_producto", productId); // Pasa el ID como String
-
-            Navigation.findNavController(rootView).navigate(R.id.nav_ovier, bundle);
+            if (!isUserLoggedIn) {
+                Toast.makeText(getContext(), "Inicie sesión primeramente", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            api.agregarCarrito(productId, finalUserId).enqueue(new Callback<ResponseBody>(){
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response){
+                    if(response.isSuccessful()){
+                        Toast.makeText(getContext(), "Producto agregado al carrito", Toast.LENGTH_SHORT).show();
+                        Log.d("CARRITO", "Producto agregado correctamente: " + productId);
+                    }else{
+                        Toast.makeText(getContext(), "Error al agregar al carrito", Toast.LENGTH_SHORT).show();
+                        Log.e("CARRITO", "Error: " + response.message());
+                    }
+                }
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                    Log.e("CARRITO", "Error de conexión", t);
+                }
+            });
         });
-
-        btn_favorito.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("id_producto", productId); // Pasa el ID como String
-
-            Navigation.findNavController(rootView).navigate(R.id.nav_bri, bundle);
-        });
-
     }
 
     @Override

@@ -9,7 +9,18 @@
         android:id="@+id/nav_home"
         android:name="com.fic.bunnyshopmobiletry5.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/jdd_to_home"
+            app:destination="@+id/nav_home"
+            app:popUpTo="@id/nav_jdd"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/pago_to_home"
+            app:destination="@+id/nav_home"
+            app:popUpTo="@id/pagoFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"

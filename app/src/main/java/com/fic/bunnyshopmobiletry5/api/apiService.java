@@ -44,12 +44,40 @@ public interface apiService {
     @GET("articulo/get")
     Call<ResponseBody> getArticulo(@Query("id_articulos") String id_articulo);
 
+
     @GET("catalog")  // Ruta del endpoint
     Call<List<Map<String, Object>>> getCatalog();
 
     @GET("wishlist/get")
     Call<List<Map<String, Object>>> getWishlist();
 
+
+    @GET("wishlist/check")
+    Call<ResponseBody> wishlistCheck(
+            @Query("key_producto") String productoId,
+            @Query("key_user") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("wishlist/delete")
+    Call<ResponseBody> wishlistDelete(
+            @Field("id_articulo") String productoId,
+            @Field("key_user") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("wishlist/agg")
+    Call<ResponseBody> wishlistAgg(
+            @Field("id_articulo") String productoId,
+            @Field("key_user") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("carrito/add")
+    Call<ResponseBody> agregarCarrito(
+            @Field("id_articulo") String productoId,
+            @Field("key_user") String userId
+    );
 }
 
 
