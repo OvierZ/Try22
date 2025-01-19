@@ -106,7 +106,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/productDescription1"
+                                android:id="@+id/totalDeEnvio"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
@@ -114,7 +114,7 @@
                                 android:textSize="14sp" />
 
                             <Button
-                                android:id="@+id/detallesBtn1"
+                                android:id="@+id/btnDeleteProduct"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
