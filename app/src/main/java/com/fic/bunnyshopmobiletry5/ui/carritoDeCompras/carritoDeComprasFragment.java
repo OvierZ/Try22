@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
+import android.widget.Button;
 
 
 import android.util.Log;
@@ -17,6 +18,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 
 import com.fic.bunnyshopmobiletry5.R;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -134,5 +138,44 @@ public class carritoDeComprasFragment extends Fragment {
         }
     }
 
+    /**
+     * Función para verificar datos del usuario y navegar a la vista de pago.
+     */
+    private void checkUserDataAndNavigate() {
+        // Recuperar datos del usuario desde SharedPreferences
+        SharedPreferences sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+        String userData = sharedPref.getString("user", null);
+
+        Log.d("User", "UserData: " + userData);
+
+        // Obtener el controlador de navegación
+        NavController navController = Navigation.findNavController(requireView());
+
+        if (userData != null) {
+            // Si existen datos del usuario, navegar al fragmento de pago
+            navController.navigate(R.id.pagoFragment);
+        } else {
+            // Si no existen datos, navegar al fragmento de inicio de sesión
+            navController.navigate(R.id.nav_blank);
+        }
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Obtén la referencia al NavController
+        NavController navController = Navigation.findNavController(view);
+
+        // Configura el botón para navegar a pagoFragment
+        Button buttonCompra = view.findViewById(R.id.buttonCompra);
+        buttonCompra.setOnClickListener(v -> {
+            // Muestra un Toast para verificar que el botón está funcionando
+            Log.d("CarritoDeCompras", "Botón presionado");
+            navController.navigate(R.id.pagoFragment);
+        });
+    }
+
 
 }
+
+
