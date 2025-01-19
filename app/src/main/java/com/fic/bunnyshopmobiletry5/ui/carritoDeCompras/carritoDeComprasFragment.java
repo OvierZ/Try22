@@ -55,7 +55,6 @@ public class carritoDeComprasFragment extends Fragment {
         showCartData();
     }
 
-
     /**
      * Método para mostrar datos del carrito de compras en los TextView.
      */
@@ -80,11 +79,19 @@ public class carritoDeComprasFragment extends Fragment {
                 String totalProducto = cartJson.getString("totalProducto");
                 totalProductoTextView.setText("$" + totalProducto);
                 nombreProductoCard.setText("NombreProducto");
-                totalEnvioProducto.setText( "Envio: "  );  //totalEnvioProducto.setText( "Envio: " + totalEnvioProducto );
+                totalEnvioProducto.setText("Envio: " + "20.00");
                 totalProductoCard.setText("$$$");
-                totalEnvioFinal.setText("totalProductoFinal");
-                totalGeneral.setText("TotalGeneral:");
+                totalEnvioFinal.setText(cartJson.getString("totalProductoFinal"));
+                totalGeneral.setText("TotalGeneral: " + "520.00");
 
+                // Configurar el botón de eliminar
+                Button btnDeleteProduct = rootView.findViewById(R.id.btnDeleteProduct);
+                btnDeleteProduct.setOnClickListener(v -> {
+                    // Eliminar el producto del carrito
+                    deleteProductFromCart();
+                    // Actualizar la interfaz de usuario
+                    showCartData();
+                });
 
             } catch (Exception e) {
                 Log.e("CarritoFragment", "Error al procesar el JSON", e);
@@ -92,6 +99,17 @@ public class carritoDeComprasFragment extends Fragment {
         } else {
             Log.d("CarritoFragment", "No se encontraron datos del carrito en SharedPreferences.");
         }
+    }
+
+    /**
+     * Método para eliminar un producto del carrito en SharedPreferences.
+     */
+    private void deleteProductFromCart() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("cart"); // Eliminar el carrito almacenado
+        editor.apply();
+        Log.d("CarritoFragment", "Producto eliminado del carrito.");
     }
 
     /**
@@ -117,48 +135,6 @@ public class carritoDeComprasFragment extends Fragment {
         editor.apply(); // Usa apply() para guardar los cambios de forma asíncrona
     }
 
-    /**
-     * Método para cargar y mostrar la imagen de perfil.
-     */
-    private void loadProductImage() {
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE);
-        String imagePath = sharedPreferences.getString("productImage", null);
-
-        ShapeableImageView productImageView = requireView().findViewById(R.id.productImage1);
-
-        if (imagePath != null) {
-            // Si la ruta es una URL remota
-            Uri imageUri = Uri.parse(imagePath);
-            Glide.with(this)
-                    .load(imageUri)
-                    .into(productImageView);
-        } else {
-            // Imagen predeterminada si no hay ruta
-            productImageView.setImageResource(R.drawable.bunny);
-        }
-    }
-
-    /**
-     * Función para verificar datos del usuario y navegar a la vista de pago.
-     */
-    private void checkUserDataAndNavigate() {
-        // Recuperar datos del usuario desde SharedPreferences
-        SharedPreferences sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
-        String userData = sharedPref.getString("user", null);
-
-        Log.d("User", "UserData: " + userData);
-
-        // Obtener el controlador de navegación
-        NavController navController = Navigation.findNavController(requireView());
-
-        if (userData != null) {
-            // Si existen datos del usuario, navegar al fragmento de pago
-            navController.navigate(R.id.pagoFragment);
-        } else {
-            // Si no existen datos, navegar al fragmento de inicio de sesión
-            navController.navigate(R.id.nav_blank);
-        }
-    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -174,8 +150,5 @@ public class carritoDeComprasFragment extends Fragment {
             navController.navigate(R.id.pagoFragment);
         });
     }
-
-
 }
-
 
