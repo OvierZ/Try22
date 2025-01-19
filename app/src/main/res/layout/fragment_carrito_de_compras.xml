@@ -6,15 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.carritoDeCompras.carritoDeComprasFragment">
 
+    <Button
+        android:id="@+id/buttonCompra"
+        android:layout_width="348dp"
+        android:layout_height="44dp"
+        android:backgroundTint="@color/teal_700"
+        android:text="Continuar Compra"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="178dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="353dp"
+        android:layout_height="136dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scrollView3"
-        app:layout_constraintVertical_bias="0.86">
+        app:layout_constraintVertical_bias="0.81">
 
         <TextView
             android:id="@+id/textNumProducto"
@@ -22,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Total en Producto:"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/totalProductoFinal"
@@ -37,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="Total en Envio:"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/totalEnviosFinal"
@@ -54,12 +68,6 @@
             android:textSize="23dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/buttonCompra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/teal_700"
-            android:text="Continuar Compra" />
     </LinearLayout>
 
     <ScrollView
@@ -97,13 +105,15 @@
 
                 <!-- Producto 1 -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardLeyoutCarrito"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp">
 
                     <LinearLayout
+
+                        android:id="@+id/contenedorProductos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"

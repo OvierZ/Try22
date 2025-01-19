@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
+import android.widget.Button;
+import android.widget.LinearLayout;
+
 
 
 import android.util.Log;
@@ -17,6 +20,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 
 import com.fic.bunnyshopmobiletry5.R;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -51,13 +57,18 @@ public class carritoDeComprasFragment extends Fragment {
         showCartData();
     }
 
-
     /**
      * Método para mostrar datos del carrito de compras en los TextView.
      */
     private void showCartData() {
         SharedPreferences sharedPref = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
         String cartData = sharedPref.getString("cart", null);
+
+        // Obtener el contenedor que contiene los productos
+       // LinearLayout cartLayout = rootView.findViewById(R.id.cardLeyoutCarrito); // Suponiendo que todo el contenido del carrito está en un LinearLayout
+
+        // Limpiar la vista antes de mostrar los productos
+       // cartLayout.removeAllViews();
 
         if (cartData != null) {
             try {
@@ -76,11 +87,19 @@ public class carritoDeComprasFragment extends Fragment {
                 String totalProducto = cartJson.getString("totalProducto");
                 totalProductoTextView.setText("$" + totalProducto);
                 nombreProductoCard.setText("NombreProducto");
-                totalEnvioProducto.setText( "Envio: "  );  //totalEnvioProducto.setText( "Envio: " + totalEnvioProducto );
+                totalEnvioProducto.setText("Envio: " + "20.00");
                 totalProductoCard.setText("$$$");
-                totalEnvioFinal.setText("totalProductoFinal");
-                totalGeneral.setText("TotalGeneral:");
+                totalEnvioFinal.setText(cartJson.getString("totalProductoFinal"));
+                totalGeneral.setText("TotalGeneral: " + "520.00");
 
+                // Configurar el botón de eliminar
+                Button btnDeleteProduct = rootView.findViewById(R.id.btnDeleteProduct);
+                btnDeleteProduct.setOnClickListener(v -> {
+                    // Eliminar el producto del carrito
+                    deleteProductFromCart();
+                    // Actualizar la interfaz de usuario
+                    showCartData();
+                });
 
             } catch (Exception e) {
                 Log.e("CarritoFragment", "Error al procesar el JSON", e);
@@ -89,6 +108,8 @@ public class carritoDeComprasFragment extends Fragment {
             Log.d("CarritoFragment", "No se encontraron datos del carrito en SharedPreferences.");
         }
     }
+
+
 
     /**
      * Método para guardar datos del carrito de compras en SharedPreferences.
@@ -113,26 +134,40 @@ public class carritoDeComprasFragment extends Fragment {
         editor.apply(); // Usa apply() para guardar los cambios de forma asíncrona
     }
 
-    /**
-     * Método para cargar y mostrar la imagen de perfil.
-     */
-    private void loadProductImage() {
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE);
-        String imagePath = sharedPreferences.getString("productImage", null);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        ShapeableImageView productImageView = requireView().findViewById(R.id.productImage1);
+        // Obtén la referencia al NavController
+        NavController navController = Navigation.findNavController(view);
 
-        if (imagePath != null) {
-            // Si la ruta es una URL remota
-            Uri imageUri = Uri.parse(imagePath);
-            Glide.with(this)
-                    .load(imageUri)
-                    .into(productImageView);
-        } else {
-            // Imagen predeterminada si no hay ruta
-            productImageView.setImageResource(R.drawable.bunny);
-        }
+        // Configura el botón para navegar a pagoFragment
+        Button buttonCompra = view.findViewById(R.id.buttonCompra);
+        buttonCompra.setOnClickListener(v -> {
+            // Muestra un Toast para verificar que el botón está funcionando
+            Log.d("CarritoDeCompras", "Botón presionado");
+            navController.navigate(R.id.pagoFragment);
+        });
     }
 
+    // Método para eliminar el producto del carrito visualmente y en SharedPreferences
+    private void deleteProductFromCart() {
+        // Eliminar el producto de SharedPreferences
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("cart"); // Eliminar el carrito almacenado
+        editor.apply();
+
+        // Eliminar el LinearLayout que contiene el producto en la vista
+        LinearLayout productLayout = rootView.findViewById(R.id.contenedorProductos); // Suponiendo que el LinearLayout del producto tiene este ID
+        if (productLayout != null) {
+            // Eliminar el producto de la vista
+            ((ViewGroup) productLayout.getParent()).removeView(productLayout);
+            Log.d("CarritoFragment", "Producto eliminado de la vista.");
+        }
+
+        // Volver a mostrar el carrito actualizado
+        showCartData();
+}
 
 }
