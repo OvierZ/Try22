@@ -6,105 +6,68 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.fic.bunnyshopmobiletry5.R;
 import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
 import com.fic.bunnyshopmobiletry5.api.apiService;
 import com.fic.bunnyshopmobiletry5.catalogoAdapter.CatalogoAdapter;
-import com.fic.bunnyshopmobiletry5.catalogoAdapter.WishListAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-
 
 public class CatalogoFragment extends Fragment {
 
-
     private RecyclerView recyclerView;
-    private WishListAdapter adapter;
-
+    private CatalogoAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflamos la vista del fragmento
         View view = inflater.inflate(R.layout.fragment_catalogo, container, false);
 
-
+        // Inicializamos el RecyclerView y el adaptador
         recyclerView = view.findViewById(R.id.recyclerViewCatalog);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // Asegúrate de usar el contexto adecuado
 
-
+        // Llamamos a la función para cargar el catálogo
         fetchCatalogData();
-
 
         return view;
     }
 
-
-    private void fetchCatalogDataFix() {
-        apiService ApiService = RetrofitInstance.getApiService();
-
-
-        ApiService.getCatalog().enqueue(new Callback<List<Map<String, Object>>>() {
-            @Override
-            public void onResponse(Call<List<Map<String, Object>>> call, Response<List<Map<String, Object>>> response) {
-
-//                getWishlist
-                if (response.isSuccessful() && response.body() != null) {
-                    adapter = new WishListAdapter(response.body());
-                    recyclerView.setAdapter(adapter);
-                }
-            }
-
-
-            @Override
-            public void onFailure(Call<List<Map<String, Object>>> call, Throwable t) {
-                // Manejo de errores
-            }
-        });
-    }
-
+    // Método para obtener los datos del catálogo de la API
     private void fetchCatalogData() {
         apiService apiService = RetrofitInstance.getApiService();
 
-        // Usamos el tipo correcto en la llamada
-        Call<List<Map<String, Object>>> call = apiService.getWishlist();
+        // Realizamos la solicitud a la API para obtener el catálogo
+        Call<List<Map<String, Object>>> call = apiService.getCatalog();
 
         call.enqueue(new Callback<List<Map<String, Object>>>() {
             @Override
             public void onResponse(Call<List<Map<String, Object>>> call, Response<List<Map<String, Object>>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     try {
-                        // Obtenemos los datos directamente de la respuesta
-                        List<Map<String, Object>> itemList = response.body();
+                        // Obtenemos los datos de la respuesta
+                        List<Map<String, Object>> productos = response.body();
 
-                        // Creamos el adaptador con los datos obtenidos
-                        adapter = new WishListAdapter(itemList);
+                        // Creamos el adaptador pasándole el contexto y la lista de productos
+                        adapter = new CatalogoAdapter(requireContext(), productos);
+
+                        // Asignamos el adaptador al RecyclerView
                         recyclerView.setAdapter(adapter);
 
                         // Notificamos al adaptador que los datos han cambiado
                         adapter.notifyDataSetChanged();
-
                     } catch (Exception e) {
                         Log.e("API_ERROR_CATALOGO", "Error procesando la respuesta", e);
                     }
@@ -119,24 +82,7 @@ public class CatalogoFragment extends Fragment {
             }
         });
     }
-
-
-    private List<Map<String, Object>> convertJsonArrayToList(JSONArray jsonArray) {
-        List<Map<String, Object>> list = new ArrayList<>();
-        try {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Map<String, Object> map = new HashMap<>();
-                for (Iterator<String> it = jsonObject.keys(); it.hasNext(); ) {
-                    String key = it.next();
-                    map.put(key, jsonObject.get(key));
-                }
-                list.add(map);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
 }
+
+
+

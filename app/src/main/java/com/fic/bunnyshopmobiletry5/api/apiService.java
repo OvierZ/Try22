@@ -26,13 +26,7 @@ public interface apiService {
 
     @FormUrlEncoded
     @POST("user/crear")
-    Call<ResponseBody> register(
-            @Field("name") String name,
-            @Field("email") String email,
-            @Field("password") String password,
-            @Field("direccion") String direccion,
-            @Field("telefono") String telefono
-    );
+    Call<ResponseBody> register(@Field("name") String name, @Field("email") String email, @Field("password") String password);
 
     @FormUrlEncoded
     @POST("compra/comprar")
@@ -87,6 +81,14 @@ public interface apiService {
     Call<ResponseBody> agregarCarrito(
             @Field("id_articulo") String productoId,
             @Field("key_user") String userId
+    );
+
+    // Ruta para agregar un artículo a la wishlist
+    @FormUrlEncoded
+    @POST("wishlist/add")  // Esta ruta debe ser la que agrega el artículo a la wishlist
+    Call<Void> addToWishlist(
+            @Field("id_articulo") String id_articulo,
+            @Field("key_user") String key_user
     );
 }
 
