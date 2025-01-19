@@ -1,22 +1,32 @@
 package com.fic.bunnyshopmobiletry5.ui.carritoDeCompras;
 
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import com.bumptech.glide.Glide;
 
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fic.bunnyshopmobiletry5.R;
+import com.google.android.material.imageview.ShapeableImageView;
+
+import org.json.JSONObject;
 
 public class carritoDeComprasFragment extends Fragment {
 
     private CarritoDeComprasViewModel mViewModel;
+    private View rootView;
 
     public static carritoDeComprasFragment newInstance() {
         return new carritoDeComprasFragment();
@@ -25,14 +35,104 @@ public class carritoDeComprasFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_carrito_de_compras, container, false);
+        rootView = inflater.inflate(R.layout.fragment_carrito_de_compras, container, false);
+        return rootView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CarritoDeComprasViewModel.class);
-        // TODO: Use the ViewModel
+
+        // Guardar datos de prueba en SharedPreferences
+        saveCartData();
+
+        // Mostrar los datos guardados
+        showCartData();
     }
+
+
+    /**
+     * Método para mostrar datos del carrito de compras en los TextView.
+     */
+    private void showCartData() {
+        SharedPreferences sharedPref = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
+        String cartData = sharedPref.getString("cart", null);
+
+        if (cartData != null) {
+            try {
+                // Convertir el String JSON a un JSONObject
+                JSONObject cartJson = new JSONObject(cartData);
+
+                // Obtener referencias de los TextView
+                TextView totalProductoTextView = rootView.findViewById(R.id.totalProductoFinal);
+                TextView nombreProductoCard = rootView.findViewById(R.id.nombreProducto);
+                TextView totalEnvioProducto = rootView.findViewById(R.id.totalDeEnvio);
+                TextView totalProductoCard = rootView.findViewById(R.id.precioProductoN);
+                TextView totalEnvioFinal = rootView.findViewById(R.id.totalEnviosFinal);
+                TextView totalGeneral = rootView.findViewById(R.id.totalGeneral);
+
+                // Mostrar los datos en el TextView
+                String totalProducto = cartJson.getString("totalProducto");
+                totalProductoTextView.setText("$" + totalProducto);
+                nombreProductoCard.setText("NombreProducto");
+                totalEnvioProducto.setText( "Envio: "  );  //totalEnvioProducto.setText( "Envio: " + totalEnvioProducto );
+                totalProductoCard.setText("$$$");
+                totalEnvioFinal.setText("totalProductoFinal");
+                totalGeneral.setText("TotalGeneral:");
+
+
+            } catch (Exception e) {
+                Log.e("CarritoFragment", "Error al procesar el JSON", e);
+            }
+        } else {
+            Log.d("CarritoFragment", "No se encontraron datos del carrito en SharedPreferences.");
+        }
+    }
+
+    /**
+     * Método para guardar datos del carrito de compras en SharedPreferences.
+     */
+    private void saveCartData() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CartPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Crear un objeto JSON con los datos del carrito
+        JSONObject cartData = new JSONObject();
+        try {
+            cartData.put("totalProducto", "199.99"); // Ejemplo: Total de productos
+            cartData.put("totalProductoFinal", "500.99"); // Ejemplo: Total final de productos
+            cartData.put("nombreProducto", "Zapatos Deportivos"); // Ejemplo: Nombre del producto
+            cartData.put("cantidad", 2); // Ejemplo: Cantidad de productos
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Guardar los datos en SharedPreferences como un String JSON
+        editor.putString("cart", cartData.toString());
+        editor.apply(); // Usa apply() para guardar los cambios de forma asíncrona
+    }
+
+    /**
+     * Método para cargar y mostrar la imagen de perfil.
+     */
+    private void loadProductImage() {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString("productImage", null);
+
+        ShapeableImageView productImageView = requireView().findViewById(R.id.productImage1);
+
+        if (imagePath != null) {
+            // Si la ruta es una URL remota
+            Uri imageUri = Uri.parse(imagePath);
+            Glide.with(this)
+                    .load(imageUri)
+                    .into(productImageView);
+        } else {
+            // Imagen predeterminada si no hay ruta
+            productImageView.setImageResource(R.drawable.bunny);
+        }
+    }
+
 
 }

@@ -7,195 +7,198 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FCEEE6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-94dp">
+        android:fillViewport="true">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="425dp"
-            android:layout_height="196dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/fondo" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView4"
-            android:layout_width="131dp"
-            android:layout_height="126dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/foto_perfil"
-            app:layout_constraintBottom_toTopOf="@+id/textView18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.463"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
-
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="331dp"
-            android:layout_height="260dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18"
-            app:layout_constraintVertical_bias="0.353">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="170dp"
-                    android:layout_height="match_parent"
-                    android:drawableStart="@drawable/home_icon"
-                    android:drawablePadding="3dp"
-                    android:gravity="center_vertical"
-                    android:text="Direccion de usuario" />
-
-                <TextView
-                    android:id="@+id/userDirection"
-                    android:layout_width="169dp"
-                    android:layout_height="35dp"
-                    android:gravity="center"
-                    android:text="TextView" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:drawableStart="@drawable/map_pin_icon"
-                    android:drawablePadding="3dp"
-                    android:gravity="center_vertical"
-                    android:text="Ubicacíon" />
-
-                <TextView
-                    android:id="@+id/userUbication"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="TextView" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:drawableStart="@drawable/phone_icon"
-                    android:drawablePadding="3dp"
-                    android:gravity="center_vertical"
-                    android:text="Telefono" />
-
-                <TextView
-                    android:id="@+id/userPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:text="TextView" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView2300"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:drawableStart="@drawable/mail_icon__2_"
-                    android:drawablePadding="3dp"
-                    android:gravity="center_vertical"
-                    android:text="Mail" />
-
-                <TextView
-                    android:id="@+id/userMail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="TextView" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView230"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:drawableStart="@drawable/_666750_calendar_schedule_icon"
-                    android:drawablePadding="3dp"
-                    android:gravity="center_vertical"
-                    android:text="Fecha de Nacimiento" />
-
-                <TextView
-                    android:id="@+id/userBirthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:text="TextView" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="34dp"
-                    android:drawableStart="@drawable/gender_ambiguous_icon"
-                    android:gravity="center_vertical"
-                    android:text="Sexo" />
-
-                <TextView
-                    android:id="@+id/userSex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="33dp"
-                    android:gravity="center"
-                    android:text="TextView" />
-            </TableRow>
-        </TableLayout>
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textView18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:background="#FCEEE6">
 
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="336dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="425dp"
+                android:layout_height="196dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/fondo" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView4"
+                android:layout_width="131dp"
+                android:layout_height="126dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/foto_perfil"
+                app:layout_constraintBottom_toTopOf="@+id/textView18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.463"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="331dp"
+                android:layout_height="260dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView18"
+                app:layout_constraintVertical_bias="0.353">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/home_icon"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="Direccion de usuario" />
+
+                    <TextView
+                        android:id="@+id/userDirection"
+                        android:layout_width="169dp"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="37dp"
+                        android:drawableStart="@drawable/map_pin_icon"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="Ubicacíon" />
+
+                    <TextView
+                        android:id="@+id/userUbication"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="TextView" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/phone_icon"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="Telefono" />
+
+                    <TextView
+                        android:id="@+id/userPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:gravity="center"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView2300"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:drawableStart="@drawable/mail_icon__2_"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="Mail" />
+
+                    <TextView
+                        android:id="@+id/userMail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView230"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/_666750_calendar_schedule_icon"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="Fecha de Nacimiento" />
+
+                    <TextView
+                        android:id="@+id/userBirthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:gravity="center"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:drawableStart="@drawable/gender_ambiguous_icon"
+                        android:gravity="center_vertical"
+                        android:text="Sexo" />
+
+                    <TextView
+                        android:id="@+id/userSex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:gravity="center"
+                        android:text="TextView" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="336dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

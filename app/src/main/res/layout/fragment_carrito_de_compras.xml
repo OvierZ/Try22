@@ -1,216 +1,182 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".ui.carritoDeCompras.carritoDeComprasFragment">
-
-<LinearLayout
-    android:layout_width="382dp"
-    android:layout_height="205dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
-    android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Productos(2)"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="$$"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Envios(2):"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="$$$"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total: $$$"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <Button
-        android:backgroundTint="@color/teal_700"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Continuar Compra" />
-</LinearLayout>
-
-<ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttonComprar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.0">
+    tools:context=".ui.carritoDeCompras.carritoDeComprasFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="350dp"
+        android:layout_height="178dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView3"
+        app:layout_constraintVertical_bias="0.86">
 
-        <!-- Título -->
         <TextView
+            android:id="@+id/textNumProducto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:text="Carrito"
-            android:textSize="24sp" />
+            android:text="Total en Producto:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
-        <!-- Lista de productos -->
+        <TextView
+            android:id="@+id/totalProductoFinal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$$$"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/textEnvio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total en Envio:"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/totalEnviosFinal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$$$"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/totalGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: $$$"
+            android:textSize="23dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonCompra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_700"
+            android:text="Continuar Compra" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Producto 1 -->
-            <androidx.cardview.widget.CardView
+            <!-- Título -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Carrito"
+                android:textSize="24sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <!-- Imagen del producto -->
-                    <ImageView
-                        android:id="@+id/productImage1"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/_producto" />
-
-                    <!-- Contenido del producto -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="16dp">
-
-                        <TextView
-                            android:id="@+id/productTitle1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="Título del Producto 1"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/productDescription1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Descripción breve del producto 1"
-                            android:textSize="14sp" />
-
-                        <Button
-                            android:id="@+id/detallesBtn1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:backgroundTint="@color/teal_700"
-                            android:text="Eliminar"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Producto 2 -->
-            <androidx.cardview.widget.CardView
+            <!-- Lista de productos -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <!-- Producto 1 -->
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
 
-                    <!-- Imagen del producto -->
-                    <ImageView
-                        android:id="@+id/productImage2"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/_producto2" />
-
-                    <!-- Contenido del producto -->
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="16dp">
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
-                        <TextView
-                            android:id="@+id/productTitle2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="Título del Producto 2"
-                            android:textSize="16sp" />
+                        <!-- Imagen del producto -->
+                        <ImageView
+                            android:id="@+id/productImage1"
+                            android:layout_width="98dp"
+                            android:layout_height="107dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/_producto" />
 
-                        <TextView
-                            android:id="@+id/productDescription2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Descripción breve del producto 2"
-                            android:textSize="14sp" />
+                        <!-- Contenido del producto -->
 
-                        <Button
-                            android:id="@+id/detallesBtn2"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:backgroundTint="@color/teal_700"
-                            android:text="Eliminar"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                            android:layout_height="153dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp">
 
+                            <TextView
+                                android:id="@+id/nombreProducto"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Producto 1"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/totalDeEnvio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Envio"
+                                android:textSize="18sp" />
+
+                            <Button
+                                android:id="@+id/btnDeleteProduct"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:backgroundTint="@color/teal_700"
+                                android:text="Eliminar"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/precioProductoN"
+                            android:layout_width="75dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="TextView"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Producto 2 -->
+
+            </LinearLayout>
+
+            <!-- Línea horizontal -->
+            <View
+                android:id="@+id/lineFoot"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray" />
         </LinearLayout>
-
-        <!-- Línea horizontal -->
-        <View
-            android:id="@+id/lineFoot"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/darker_gray" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
