@@ -58,8 +58,10 @@ public class JDDFragment extends Fragment {
         // Obtener el argumento (ID del producto)
         if (getArguments() != null) {
             productId = getArguments().getString("id_producto");
-            Log.d("Producto", productId);
+            Log.d("Producto JDD", productId);
             getArticulo(productId);
+
+            return;
             // Usa el idProducto aquí
         }
 
@@ -281,6 +283,16 @@ public class JDDFragment extends Fragment {
                         String descripcion = producto.getString("descripcion");
                         String urlImagen = enviroment.BASE_URL_STORAGE + "productos/" + producto.getString("imagen");
                         String precio = producto.getString("precio");
+
+                        Integer cantidad = producto.getInt("cantidad");
+
+
+                        if(cantidad == 0){
+                            Button btn_comprar = rootView.findViewById(R.id.button_comprar);
+
+                            btn_comprar.setEnabled(false);
+                            //btn_comprar.setAlpha(0.5f);    // Reduce la opacidad para indicar que está deshabilitado
+                        }
 
                         // Actualizar vistas
                         if (getView() != null) {

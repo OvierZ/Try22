@@ -50,18 +50,6 @@
                     android:text="Descripción de prueba"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/fecha_compra"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="fecha_compra"/>
-
-                <TextView
-                    android:id="@+id/datos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="datos"/>
-
                 <Button
                     android:id="@+id/itemHistorialBtnDetalles"
                     android:layout_width="wrap_content"
