@@ -197,6 +197,7 @@ public class JDDFragment extends Fragment {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
                             btn_wishlist.setText("Quitar De La Wishlist");
+                            Toast.makeText(getContext(), "Producto Agregado A La Wishlist", Toast.LENGTH_SHORT).show();
                             Log.d("WISHLIST_ACTION", "Producto agregado a la wishlist");
                         }else{
                             Log.e("WISHLIST_ACTION", "Error al agregar: " + response.code());
@@ -214,6 +215,7 @@ public class JDDFragment extends Fragment {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if(response.isSuccessful()){
                             btn_wishlist.setText("Agregar A La Wishlist");
+                            Toast.makeText(getContext(), "Producto Eliminado De La Wishlist", Toast.LENGTH_SHORT).show();
                             Log.d("WISHLIST_ACTION", "Producto eliminado de la wishlist");
                         }else {
                             Log.e("WISHLIST_ACTION", "Error al eliminar: " + response.code());
