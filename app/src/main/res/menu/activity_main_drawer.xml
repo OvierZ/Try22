@@ -5,6 +5,11 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_CatalogoJDD"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Catalogo" />
         <!--item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
@@ -45,14 +50,10 @@
             android:id="@+id/nav_ovier"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Ovier" /-->
-        <item
-            android:id="@+id/nav_CatalogoJDD"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Productos" />
-        <item
+        <!--item
             android:id="@+id/catalogoFragment"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Wishlist" />
+            android:title="Wishlist" /-->
         <item
             android:id="@+id/carritoDeComprasFragment"
             android:icon="@drawable/ic_menu_slideshow"

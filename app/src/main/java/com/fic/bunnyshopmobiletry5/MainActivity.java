@@ -104,13 +104,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Obtén la referencia al NavigationView
         NavigationView navigationView = findViewById(R.id.nav_view); // Asegúrate de que este ID sea correcto
+
+        // Obtén la vista del header
+        View headerView = navigationView.getHeaderView(0);
+
+        // Accede al TextView dentro del header
+        TextView nombreUsuario = headerView.findViewById(R.id.textView);
+
         if (navigationView != null && userData != null) {
-
-            // Obtén la vista del header
-            View headerView = navigationView.getHeaderView(0);
-
-            // Accede al TextView dentro del header
-            TextView nombreUsuario = headerView.findViewById(R.id.textView);
 
             // Modifica el contenido del TextView
 
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         } else {
-            Log.e("menuData", "No se pudo encontrar el NavigationView.");
+            nombreUsuario.setText("¡Bienvenido, usuario desconocido");
         }
     }
     private void fetchData() {

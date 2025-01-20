@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.fic.bunnyshopmobiletry5.MainActivity;
 import com.fic.bunnyshopmobiletry5.R;
 import com.fic.bunnyshopmobiletry5.api.apiService;
 import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
@@ -134,6 +135,12 @@ public class BlankFragment extends Fragment {
                         String userData = sharedPref.getString("user", null);
 
                         Log.d("Shared_Preferences", userData);
+
+                        // Obtén la referencia a la actividad principal
+                        MainActivity mainActivity = (MainActivity) requireActivity();
+
+                        // Llama al método menuData()
+                        mainActivity.menuData();
 
                         // Navega al fragmento con el ID del producto
                         //Navigation.findNavController(rootView).navigate(R.id.nav_mario);

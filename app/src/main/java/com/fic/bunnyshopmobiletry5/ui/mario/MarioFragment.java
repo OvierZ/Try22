@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.fic.bunnyshopmobiletry5.MainActivity;
 import com.fic.bunnyshopmobiletry5.R;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.gson.Gson;
@@ -242,6 +243,12 @@ public class MarioFragment extends Fragment {
         preferencesEditor.apply(); // O preferencesEditor.commit();
 
         NavController navController = Navigation.findNavController(requireView());
+
+        // Obtén la referencia a la actividad principal
+        MainActivity mainActivity = (MainActivity) requireActivity();
+
+        // Llama al método menuData()
+        mainActivity.menuData();
 
         navController.navigate(R.id.action_perfil_to_login);
     }
