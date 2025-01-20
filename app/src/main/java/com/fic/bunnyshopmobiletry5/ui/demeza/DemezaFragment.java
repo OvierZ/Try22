@@ -111,7 +111,7 @@ public class DemezaFragment extends Fragment {
 
         } else {
             //Si no existe, navegar al login
-            navController.navigate(R.id.nav_blank);
+            navController.navigate(R.id.action_historial_to_login);
         }
     }
 

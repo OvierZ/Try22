@@ -26,6 +26,7 @@ import com.fic.bunnyshopmobiletry5.api.RetrofitInstance;
 import com.fic.bunnyshopmobiletry5.api.UserService;
 import com.fic.bunnyshopmobiletry5.api.apiService;
 import com.fic.bunnyshopmobiletry5.api.enviroment;
+import com.fic.bunnyshopmobiletry5.ui.dialogLoading.dialogLoading;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -258,6 +259,10 @@ public class JDDFragment extends Fragment {
 
     public void getArticulo(String id_articulo){
 
+
+        dialogLoading loadingDialog = new dialogLoading();
+        loadingDialog.show(getParentFragmentManager(), "LoadingDialog");
+
         apiService apiService = RetrofitInstance.getApiService();
         Call<ResponseBody> call = apiService.getArticulo(id_articulo);
 
@@ -311,5 +316,7 @@ public class JDDFragment extends Fragment {
                 Log.e("API_ERROR_CATALOGO", "Error en la solicitud", t);
             }
         });
+
+        loadingDialog.dismiss();
     }
 }

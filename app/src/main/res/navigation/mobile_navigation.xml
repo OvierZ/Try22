@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/nav_blank"
         android:name="com.fic.bunnyshopmobiletry5.ui.emma.BlankFragment"
-        android:label="Emma"
+        android:label="Login"
         tools:layout="@layout/fragment_blank">
         <action
             android:id="@+id/action_login_to_perfil"
@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/nav_jdd"
         android:name="com.fic.bunnyshopmobiletry5.ui.JDD.JDDFragment"
-        android:label="JDD"
+        android:label="Detalles de producto"
         tools:layout="@layout/fragment_j_d_d">
         <action
             android:id="@+id/action_detalles_to_comprar"
@@ -72,13 +72,13 @@
     <fragment
         android:id="@+id/nav_bri"
         android:name="com.fic.bunnyshopmobiletry5.ui.briseyda.BriseydaFragment"
-        android:label="Bri"
+        android:label="Wishlist"
         tools:layout="@layout/fragment_briseyda"/>
 
     <fragment
         android:id="@+id/nav_mario"
         android:name="com.fic.bunnyshopmobiletry5.ui.mario.MarioFragment"
-        android:label="Mario"
+        android:label="Perfil"
         tools:layout="@layout/fragment_mario">
         <action
             android:id="@+id/action_perfil_to_login"
@@ -92,8 +92,20 @@
     <fragment
         android:id="@+id/nav_demeza"
         android:name="com.fic.bunnyshopmobiletry5.ui.demeza.DemezaFragment"
-        android:label="Demeza"
-        tools:layout="@layout/fragment_demeza"/>
+        android:label="Historial de compras"
+        tools:layout="@layout/fragment_demeza">
+        <action
+            android:id="@+id/action_historial_to_login"
+            app:destination="@+id/nav_blank"
+            app:popUpTo="@id/nav_demeza">
+        </action>
+
+        <action
+            android:id="@+id/action_historial_to_detalles"
+            app:destination="@+id/nav_jdd"
+            app:popUpTo="@id/nav_demeza">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_ovier"
@@ -104,7 +116,7 @@
     <fragment
         android:id="@+id/nav_CatalogoJDD"
         android:name="com.fic.bunnyshopmobiletry5.ui.CatalogoJDD.CatalogoJDDFragment"
-        android:label="Juan De Dios"
+        android:label="Catalogo de productos"
         tools:layout="@layout/fragment_catalogo_j_d_d"/>
 
     <fragment
@@ -120,11 +132,17 @@
         android:id="@+id/pagoFragment"
         android:name="com.fic.bunnyshopmobiletry5.ui.pago.PagoFragment"
         android:label="Pago"
-        tools:layout="@layout/fragment_pago" />
+        tools:layout="@layout/fragment_pago">
+        <action
+            android:id="@+id/action_pago_to_historial"
+            app:destination="@+id/nav_demeza"
+            app:popUpTo="@id/pagoFragment">
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/carritoDeComprasFragment"
         android:name="com.fic.bunnyshopmobiletry5.ui.carritoDeCompras.carritoDeComprasFragment"
-        android:label="fragment_carrito_de_compras"
+        android:label="Carrito de compras"
         tools:layout="@layout/fragment_carrito_de_compras" />
 
 </navigation>
