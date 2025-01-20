@@ -259,7 +259,6 @@ public class JDDFragment extends Fragment {
 
     public void getArticulo(String id_articulo){
 
-
         dialogLoading loadingDialog = new dialogLoading();
         loadingDialog.show(getParentFragmentManager(), "LoadingDialog");
 
@@ -317,6 +316,7 @@ public class JDDFragment extends Fragment {
             }
         });
 
+        
         loadingDialog.dismiss();
     }
 }

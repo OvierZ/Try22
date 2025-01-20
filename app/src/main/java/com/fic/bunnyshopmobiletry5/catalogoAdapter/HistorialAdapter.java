@@ -73,8 +73,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
                     View view = holder.itemView;
 
                     // Navega al fragmento con el ID del producto
-                    Navigation.findNavController(view).navigate(R.id.nav_jdd, bundle);
-
+                    Navigation.findNavController(view).navigate(R.id.action_historial_to_detalles, bundle);
                 }
 
             }

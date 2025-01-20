@@ -45,7 +45,8 @@ public class DemezaFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private HistorialAdapter adapter;
-    private List<Map<String, Object>> productos = new ArrayList<>(); // Lista de productos
+    private List<Map<String, Object>> productos = new ArrayList<>();
+
 
     private View rootView;
     public static DemezaFragment newInstance() {
@@ -67,6 +68,8 @@ public class DemezaFragment extends Fragment {
         adapter = new HistorialAdapter(getContext(), productos);
         recyclerView.setAdapter(adapter);
 
+
+        Log.d("DEMEZA", "INICIADO");
         return rootView;
     }
 
@@ -86,39 +89,33 @@ public class DemezaFragment extends Fragment {
     }
 
     private void checkUserDataAndNavigate() {
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
+        String userData = sharedPreferences.getString("user", null);
 
-        String userData = sharedPref.getString("user", null);
+        Log.d("DemezaFragment", "UserData: " + userData);
 
-        Log.d("User", "UserData: " + userData);
-
-        NavController navController = Navigation.findNavController(requireView());
-
-        JSONObject userJson;
-        if (userData != null) {
-            //Si existe, navegar al fragmento principal
-            //navController.navigate(R.id.nav_mario);
-            Log.d("UserData", "DATOS: " + userData);
-
-            try {
-                // Convertir el String JSON a un JSONObject
-                userJson = new JSONObject(userData);
-                obtenerHistorial(userJson.getString("id_user"));
-
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-
-        } else {
-            //Si no existe, navegar al login
+        if (userData == null) {
+            // Redirige al login si no hay datos del usuario
+            NavController navController = Navigation.findNavController(requireView());
             navController.navigate(R.id.action_historial_to_login);
+        } else {
+            try {
+                JSONObject userJson = new JSONObject(userData);
+                String userId = userJson.getString("id_user");
+                obtenerHistorial(userId);
+            } catch (JSONException e) {
+                Log.e("DemezaFragment", "Error al analizar los datos del usuario", e);
+            }
         }
+
     }
 
 
     private void obtenerHistorial(String key_user) {
         apiService apiService = RetrofitInstance.getApiService();
         Call<ResponseBody> call = apiService.getCompras(key_user);
+
+        productos.clear();
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

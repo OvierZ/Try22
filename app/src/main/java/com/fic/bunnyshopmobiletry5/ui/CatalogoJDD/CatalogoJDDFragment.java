@@ -71,6 +71,8 @@ public class CatalogoJDDFragment extends Fragment {
 
     private void obtenerCatalogo() {
 
+        productos.clear();
+
         dialogLoading loadingDialog = new dialogLoading();
         loadingDialog.show(getParentFragmentManager(), "LoadingDialog");
 

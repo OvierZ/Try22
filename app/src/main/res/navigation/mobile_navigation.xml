@@ -97,13 +97,15 @@
         <action
             android:id="@+id/action_historial_to_login"
             app:destination="@+id/nav_blank"
-            app:popUpTo="@id/nav_demeza">
+            app:popUpTo="@id/nav_demeza"
+            app:popUpToInclusive="true">
         </action>
 
         <action
             android:id="@+id/action_historial_to_detalles"
             app:destination="@+id/nav_jdd"
-            app:popUpTo="@id/nav_demeza">
+            app:popUpTo="@id/nav_demeza"
+            app:popUpToInclusive="true">
         </action>
     </fragment>
 
@@ -136,7 +138,8 @@
         <action
             android:id="@+id/action_pago_to_historial"
             app:destination="@+id/nav_demeza"
-            app:popUpTo="@id/pagoFragment">
+            app:popUpTo="@id/pagoFragment"
+            app:popUpToInclusive="true">
         </action>
     </fragment>
     <fragment
