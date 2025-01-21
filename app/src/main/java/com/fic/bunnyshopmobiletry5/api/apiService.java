@@ -57,7 +57,7 @@ public interface apiService {
     Call<List<Map<String, Object>>> getWishlist();
 
     @GET("carrito/get")
-    Call<List<Map<String, Object>>> getCarrito();
+    Call<ResponseBody>  getCarrito(@Query("key_user") String key_user);
 
     @GET("compra/get")
     Call<ResponseBody> getCompras(@Query("key_user") String key_user);
@@ -95,6 +95,13 @@ public interface apiService {
     Call<Void> addToWishlist(
             @Field("id_articulo") String id_articulo,
             @Field("key_user") String key_user
+    );
+
+    @FormUrlEncoded
+    @POST("carrito/delete")
+    Call<ResponseBody> deleteArticuloCarrito(
+            @Field("id_articulo") String idArticulo,
+            @Field("key_user") String idUser
     );
 }
 

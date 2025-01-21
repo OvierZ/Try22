@@ -146,6 +146,17 @@
         android:id="@+id/carritoDeComprasFragment"
         android:name="com.fic.bunnyshopmobiletry5.ui.carritoDeCompras.carritoDeComprasFragment"
         android:label="Carrito de compras"
-        tools:layout="@layout/fragment_carrito_de_compras" />
+        tools:layout="@layout/fragment_carrito_de_compras">
+        <action
+            android:id="@+id/action_carrito_to_login"
+            app:destination="@+id/nav_blank"
+            app:popUpTo="@id/carritoDeComprasFragment">
+        </action>
+        <action
+            android:id="@+id/action_carrito_to_pago"
+            app:destination="@+id/pagoFragment"
+            app:popUpTo="@id/carritoDeComprasFragment">
+        </action>
+    </fragment>
 
 </navigation>

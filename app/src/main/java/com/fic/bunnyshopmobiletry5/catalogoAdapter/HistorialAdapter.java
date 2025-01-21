@@ -86,7 +86,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
     }
 
     static class HistorialViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitulo, tvDescripcion, tv;
+        TextView tvTitulo, tvDescripcion, tvFechaCompra;
         ImageView tvImagen;
         Button btnVerMas;
 

@@ -133,7 +133,8 @@ public class DemezaFragment extends Fragment {
                                     "id_articulo", jsonObject.getString("id_articulos"),
                                     "nombre", jsonObject.getString("nombre"),
                                     "descripcion", jsonObject.getString("descripcion"),
-                                    "imagen", jsonObject.getString("imagen")
+                                    "imagen", jsonObject.getString("imagen"),
+                                    "fecha_compra", jsonObject.getString("fecha_compra")
                             );
 
                             productos.add(producto); // Agrega a la lista de productos
