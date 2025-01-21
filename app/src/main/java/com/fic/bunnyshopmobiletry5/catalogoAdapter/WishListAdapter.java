@@ -1,84 +1,140 @@
 package com.fic.bunnyshopmobiletry5.catalogoAdapter;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.fic.bunnyshopmobiletry5.R;
+import com.fic.bunnyshopmobiletry5.api.enviroment;
 
 import java.util.List;
 import java.util.Map;
 
-public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHolder> {
+public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishListViewHolder> {
 
-    private List<Map<String, Object>> itemList;
-    private OnItemClickListener listener;  // Listener para el clic en el botón
+    private List<Map<String, Object>> productos;
+    private Context context;
 
-    public WishListAdapter(List<Map<String, Object>> itemList, OnItemClickListener listener) {
-        this.itemList = itemList;
-        this.listener = listener;
-    }
-
-    public void updateData(List<Map<String, Object>> newData) {
-        itemList.clear();
-        itemList.addAll(newData);
-        notifyDataSetChanged();
+    // Constructor del adaptador
+    public WishListAdapter(Context context, List<Map<String, Object>> productos) {
+        this.context = context;
+        this.productos = productos;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_wishlist, parent, false);
-        return new ViewHolder(view);
+    public WishListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflar el layout de cada item de la wishlist
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_wishlist, parent, false);
+        return new WishListViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Map<String, Object> item = itemList.get(position);
-        holder.textViewName.setText((String) item.get("name"));
-        holder.textViewPrice.setText("$" + item.get("price"));
-        Glide.with(holder.imageViewProduct.getContext())
-                .load((String) item.get("image"))
-                .into(holder.imageViewProduct);
+    public void onBindViewHolder(@NonNull WishListViewHolder holder, int position) {
+        // Obtener el producto para la posición actual
+        Map<String, Object> producto = productos.get(position);
 
-        // Establecer el click listener para el botón de favoritos
-        holder.favoriteButton.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onAddToWishlistClick(item);  // Llamar al listener cuando el botón es presionado
+        // Configurar los datos del producto
+        holder.tvNombre.setText((String) producto.get("nombre"));
+
+        // Validar el precio (puede ser un número o nulo)
+        Object precio = producto.get("precio");
+        if (precio instanceof Number) {
+            holder.tvPrecio.setText(String.format("$%.2f", ((Number) precio).doubleValue()));
+        } else {
+            holder.tvPrecio.setText("$0.00"); // Valor predeterminado si no se puede obtener el precio
+        }
+
+        // Configurar la imagen del producto con Glide
+        String imagen = (String) producto.get("imagen");
+        if (imagen != null && !imagen.isEmpty()) {
+            String urlImagen = enviroment.BASE_URL_STORAGE + "productos/" + imagen;
+            Glide.with(context)
+                    .load(urlImagen)
+                    .placeholder(R.drawable.macaco_preocupado) // Imagen de carga
+                    .error(R.drawable.bunny) // Imagen en caso de error
+                    .into(holder.tvImagen);
+        } else {
+            holder.tvImagen.setImageResource(R.drawable.bunny); // Imagen por defecto si no se encuentra la URL
+        }
+
+        // Configurar el evento del botón "Ver Más"
+        holder.btnVerMas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("WishListAdapter", "Producto: " + producto.toString());
+
+                // Obtener el ID del producto
+                Object idProducto = producto.get("id_articulo");
+                if (idProducto != null) {
+                    // Pasar el ID del producto a otro fragmento
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id_producto", idProducto.toString());
+
+                    // Navegar al fragmento de detalle
+                    View view = holder.itemView;
+                    Navigation.findNavController(view).navigate(R.id.nav_jdd, bundle);
+                } else {
+                    Log.e("WishListAdapter", "ID del producto no encontrado.");
+                }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return productos.size();
     }
 
-    public interface OnItemClickListener {
-        void onAddToWishlistClick(Map<String, Object> item);
+    // Método para actualizar los datos de la wishlist
+    public void updateData(List<Map<String, Object>> nuevosProductos) {
+        this.productos = nuevosProductos;
+        notifyDataSetChanged(); // Notificamos que los datos han cambiado
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewName, textViewPrice;
-        ImageView imageViewProduct;
-        Button favoriteButton;  // Asumiendo que tienes un botón en el layout
+    // ViewHolder para el adaptador
+    static class WishListViewHolder extends RecyclerView.ViewHolder {
+        TextView tvNombre, tvPrecio;
+        ImageView tvImagen;
+        Button btnVerMas;
 
-        public ViewHolder(@NonNull View itemView) {
+        public WishListViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.textViewName);
-            textViewPrice = itemView.findViewById(R.id.textViewPrice);
-            imageViewProduct = itemView.findViewById(R.id.imageViewProduct);
-            favoriteButton = itemView.findViewById(R.id.button3);  // El botón de agregar a favoritos
+            tvNombre = itemView.findViewById(R.id.tvNombre);
+            tvPrecio = itemView.findViewById(R.id.tvPrecio);
+            tvImagen = itemView.findViewById(R.id.tvImagen);
+            btnVerMas = itemView.findViewById(R.id.buttonVerMas); // ID del botón "Ver Más"
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

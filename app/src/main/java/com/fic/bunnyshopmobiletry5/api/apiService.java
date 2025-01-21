@@ -7,13 +7,13 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface apiService {
+
     @GET("cotizaciones/usd")
     Call<ResponseBody> getData();
 
@@ -46,21 +46,21 @@ public interface apiService {
     @GET("articulo/get")
     Call<ResponseBody> getCatalogo();
 
-
     @GET("articulo/get")
     Call<ResponseBody> getArticulo(@Query("id_articulos") String id_articulo);
 
     @GET("catalog")  // Ruta del endpoint
     Call<List<Map<String, Object>>> getCatalog();
 
+
     @GET("wishlist/get")
-    Call<List<Map<String, Object>>> getWishlist();
+    Call<List<Map<String, Object>>> getWishlist(@Query("key_user") String userId);  // Carga la lista de la wishlist
 
     @GET("carrito/get")
-    Call<List<Map<String, Object>>> getCarrito();
+    Call<List<Map<String, Object>>> getCarrito();  // Obtiene el carrito de compras
 
     @GET("compra/get")
-    Call<ResponseBody> getCompras(@Query("key_user") String key_user);
+    Call<ResponseBody> getCompras(@Query("key_user") String userId);
 
     @GET("wishlist/check")
     Call<ResponseBody> wishlistCheck(
@@ -68,6 +68,7 @@ public interface apiService {
             @Query("key_user") String userId
     );
 
+    // Eliminar artículo de la wishlist
     @FormUrlEncoded
     @POST("wishlist/delete")
     Call<ResponseBody> wishlistDelete(
@@ -75,6 +76,7 @@ public interface apiService {
             @Field("key_user") String userId
     );
 
+    // Agregar artículo a la wishlist
     @FormUrlEncoded
     @POST("wishlist/agg")
     Call<ResponseBody> wishlistAgg(
@@ -82,6 +84,7 @@ public interface apiService {
             @Field("key_user") String userId
     );
 
+    // Agregar artículo al carrito
     @FormUrlEncoded
     @POST("carrito/add")
     Call<ResponseBody> agregarCarrito(
@@ -89,13 +92,7 @@ public interface apiService {
             @Field("key_user") String userId
     );
 
-    // Ruta para agregar un artículo a la wishlist
-    @FormUrlEncoded
-    @POST("wishlist/add")  // Esta ruta debe ser la que agrega el artículo a la wishlist
-    Call<Void> addToWishlist(
-            @Field("id_articulo") String id_articulo,
-            @Field("key_user") String key_user
-    );
 }
+
 
 
