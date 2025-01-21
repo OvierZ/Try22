@@ -54,7 +54,7 @@ public interface apiService {
     Call<List<Map<String, Object>>> getCatalog();
 
     @GET("wishlist/get")
-    Call<List<Map<String, Object>>> getWishlist();
+    Call<List<Map<String, Object>>> getWishlist(@Query("key_user") String userId);  // Carga la lista de la wishlist
 
     @GET("carrito/get")
     Call<ResponseBody>  getCarrito(@Query("key_user") String key_user);
